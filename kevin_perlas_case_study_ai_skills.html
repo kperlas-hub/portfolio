@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+  }
+  .controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 13px;
+    color: #555;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .controls-group { display: flex; gap: 10px; align-items: center; }
+  .controls-sep { width: 1px; height: 24px; background: #ccc; }
+  .btn {
+    padding: 8px 18px;
+    border: 1px solid #ccc;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    transition: background 0.15s;
+    white-space: nowrap;
+  }
+  .btn:hover { background: #f5f5f5; }
+  .btn.primary { background: #1a1a1a; color: white; border-color: #1a1a1a; }
+  .btn.primary:hover { background: #333; }
+  .btn.edit-active { background: #2563eb; color: white; border-color: #2563eb; }
+  .btn.edit-active:hover { background: #1d4ed8; }
+
+  .save-msg {
+    font-size: 12px; color: #2563eb; font-style: italic;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .save-msg.show { opacity: 1; }
+
+  .page {
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 28px 44px 20px;
+    border-bottom: 2px solid #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .name {
+    font-family: Arial, sans-serif;
+    font-size: 28px; font-weight: 700; color: #0F766E;
+    letter-spacing: -0.5px; line-height: 1;
+  }
+  .title-line {
+    font-size: 11px; font-weight: 500; color: #666;
+    letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;
+  }
+  .contact { text-align: right; font-size: 11px; color: #666; line-height: 1.8; }
+
+  /* CASE LABEL */
+  .case-label {
+    padding: 12px 44px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: #f7f7f7; border-bottom: 1px solid #e8e8e8;
+  }
+  .tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #888; }
+
+  /* BODY */
+  .body { flex: 1; padding: 30px 44px 48px; display: flex; flex-direction: column; }
+
+  .zone-label {
+    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: #bbb; margin-bottom: 8px;
+  }
+
+  /* ZONE 1 */
+  .zone-stakes { margin-bottom: 20px; }
+  .stakes-headline {
+    font-size: 21px; font-weight: 700; color: #1a1a1a;
+    line-height: 1.3; font-family: Arial, sans-serif;
+  }
+  .stakes-context { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.55; }
+
+  .divider { height: 1px; background: #e8e8e8; margin: 28px 0; }
+
+  /* TWO COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+
+  /* ZONE 2 */
+  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .zone-insights ul li {
+    font-size: 12.5px; color: #333; line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .zone-insights ul li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
+
+  /* ZONE 3 */
+  .contribution-text {
+    font-size: 12.5px; color: #333; line-height: 1.6;
+    padding-left: 0;
+  }
+
+  /* ZONES 4 + ARTIFACT */
+  .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+  .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
+  .move-text strong { color: #1a1a1a; font-weight: 600; }
+
+  .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
+  .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
+  .artifact-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+  .artifact-table th {
+    background: #1a1a1a; color: white; padding: 5px 8px;
+    text-align: left; font-weight: 600; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .artifact-table td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; color: #444; vertical-align: top; line-height: 1.4; }
+  .artifact-table tr:last-child td { border-bottom: none; }
+  .artifact-table tr:nth-child(even) td { background: #f9f9f9; }
+  .col-before { color: #999 !important; }
+  .col-after { color: #1a1a1a !important; font-weight: 500; }
+  .artifact-source { font-size: 9px; color: #aaa; font-style: italic; padding: 5px 8px; }
+
+  /* ZONE 5 */
+  .zone-outcome {
+    background: #1a1a1a; border-radius: 3px; padding: 18px 22px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  }
+  .outcome-header { grid-column: 1/-1; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #0F766E; margin-bottom: 4px; }
+  .metric-block { display: flex; flex-direction: column; gap: 3px; }
+  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; font-family: Arial, sans-serif; line-height: 1; }
+  .metric-unit { font-size: 14px; font-weight: 400; color: #aaa; }
+  .metric-desc { font-size: 10.5px; color: #777; line-height: 1.4; margin-top: 2px; }
+
+  /* FOOTER */
+  .footer {
+    padding: 12px 44px; border-top: 1px solid #e8e8e8;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-left { font-size: 10px; color: #aaa; font-style: italic; }
+  .footer-right { font-size: 10px; color: #aaa; }
+
+  /* BRIDGE LINE */
+  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 14px; text-align: center; }
+  .bridge-line a { color: #1a1a1a; font-weight: 600; font-style: normal; text-decoration: none; border-bottom: 1px solid #1a1a1a; }
+  .bridge-line a:hover { color: #2563eb; border-color: #2563eb; }
+
+  /* TEMPLATE MODE */
+  .page.tpl .stakes-headline,
+  .page.tpl .stakes-context { background: #ebebeb; color: transparent !important; border-radius: 2px; }
+  .page.tpl .zone-insights ul li { background: #ebebeb; color: transparent !important; border-radius: 2px; }
+  .page.tpl .zone-insights ul li::before { opacity: 0; }
+  .page.tpl .contribution-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
+  .page.tpl .move-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
+  .page.tpl .artifact-box { opacity: 0.15; }
+  .page.tpl .metric-number { background: #444; color: transparent !important; border-radius: 2px; }
+  .page.tpl .metric-unit { opacity: 0; }
+  .page.tpl .metric-desc { background: #555; color: transparent !important; border-radius: 2px; }
+  .page.tpl .tag { color: transparent; background: #ddd; border-radius: 2px; }
+  .page.tpl
+  .page.tpl .tpl-hint { display: block; }
+  .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
+
+  /* EDIT MODE */
+  [contenteditable="true"] {
+    outline: 2px dashed #2563eb;
+    border-radius: 2px;
+    padding: 2px 4px;
+    cursor: text;
+    min-width: 20px;
+    display: inline-block;
+  }
+  [contenteditable="true"]:focus { outline: 2px solid #2563eb; background: #eff6ff; }
+  .edit-hint {
+    display: none;
+    font-size: 11px; color: #2563eb; font-style: italic;
+    margin-bottom: 8px; text-align: center;
+  }
+  .edit-mode-on .edit-hint { display: block; }
+
+  /* ============ SITE NAV ============ */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 44px;
+    height: 52px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .nav-logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #0F766E;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .nav-links > a {
+    font-size: 12px;
+    color: #555;
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+  .nav-links > a:hover { color: #1a1a1a; }
+  .nav-dropdown { position: relative; }
+  .nav-dropdown-btn {
+    font-size: 12px;
+    color: #555;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.3px;
+    padding: 0;
+  }
+  .nav-dropdown-btn:hover { color: #1a1a1a; }
+  .nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding-top: 12px;
+    padding-bottom: 6px;
+    z-index: 200;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+  .nav-dropdown-menu a {
+    display: block;
+    padding: 9px 16px;
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .nav-dropdown-menu a:last-child { border-bottom: none; }
+  .nav-dropdown-menu a:hover { background: #f7f7f7; color: #0F766E; }
+  .nav-edit {
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  }
+  .nav-edit:hover { background: #f5f5f5; }
+  .nav-edit.edit-active { background: #2563eb; color: white; border-color: #2563eb; }
+  .nav-save {
+    font-size: 11px;
+    padding: 5px 12px;
+    border: 1px solid #1a1a1a;
+    border-radius: 4px;
+    background: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    display: none;
+  }
+  .nav-save:hover { background: #333; }
+  .edit-hint-banner {
+    display: none;
+    font-size: 11px;
+    color: #2563eb;
+    font-style: italic;
+    text-align: center;
+    padding: 8px;
+    background: #eff6ff;
+    border-bottom: 1px solid #bfdbfe;
+  }
+  body.edit-mode-on .edit-hint-banner { display: block; }
+
+
+  /* ============ CONTACT SECTION ============ */
+  .contact-section {
+    background: #1a1a1a;
+    padding: 48px 44px;
+  }
+  .contact-headline {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .contact-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    width: 72px;
+    flex-shrink: 0;
+  }
+  .contact-value {
+    font-size: 14px;
+    color: #ccc;
+  }
+  .contact-value a { color: #0F766E; text-decoration: none; }
+  .contact-value a:hover { color: #5BBFB8; }
+  .portfolio-footer {
+    background: white;
+    padding: 10px 44px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #aaa;
+    font-style: italic;
+  }
+
+</style>
+</head>
+<body class="">
+
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">Kevin Perlas</a>
+  <div class="nav-links">
+    <a href="index.html#about">About</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn">Work &#9662;</button>
+      <div class="nav-dropdown-menu">
+        <a href="kevin_perlas_case_study_design_sprints.html">Design Sprints</a>
+        <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a>
+        <a href="kevin_perlas_case_study_perf_mgmt.html">Service Design for Performance Management</a>
+        <a href="kevin_perlas_case_study_insights_capability.html">Building Insights Capability</a>
+        <a href="kevin_perlas_case_study_persona_program.html">Global People Persona Program</a>
+      </div>
+    </div>
+    <a href="index.html#contact">Contact</a>
+    <a href="https://linkedin.com/in/kevinperlas" target="_blank">LinkedIn</a>
+    <button class="nav-edit" id="btn-edit" onclick="toggleEdit()">&#9998; Edit</button>
+    <button class="nav-save" id="btn-save" onclick="saveHTML()">&#128190; Save</button>
+  </div>
+</nav>
+<div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
+<div class="page" id="page">
+
+  <div class="case-label">
+    <div class="tag" id="e-case-tag">Case Study &nbsp;·&nbsp; ServiceNow Workflow Design Studio &nbsp;·&nbsp; 2025–2026</div>
+  </div>
+
+  <div class="body">
+
+    <div class="zone-stakes">
+      <div class="stakes-headline" id="e-stakes-head">A high-performing team was struggling to scale. Their work was excellent and leadership wanted more.</div>
+      <div class="divider"></div>
+      <div class="zone-label">THE SITUATION</div>
+      <div class="stakes-context" id="e-stakes-ctx">ServiceNow's Workflow Design Studio had a 10-year track record of delivering results for ServiceNow customers. Engagements ran 10–12 weeks, often longer. There was executive pressure to compress timelines so the team could handle more volume without cutting scope or adding headcount.</div>
+      <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
+      <div class="zone-label" style="margin-top:20px;">MY APPROACH</div>
+      <div class="move-text" id="e-move"><strong>Prove it before releasing it.</strong> Prior to proposing a new workflow or running a training session, I built 8 AI skills and proved the system solo on a live client engagement before sharing anything with the team. Once validated, the team was eager to apply the efficiencies for themselves.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-insights">
+        <div class="zone-label">INSIGHTS AND FACTORS</div>
+        <ul>
+          <li id="e-ins-1">The bottleneck was the lag between process phases in which the team analyzed outputs and translated them to artifacts or provocations in the next phase.</li>
+          <li id="e-ins-2">The directive to "use AI" was org-wide. Nobody had connected it to the team's actual performance objective: freeing up capacity for strategy and client work, not just checking an "AI adoption" box.</li>
+          <li id="e-ins-3">Synthesis and documentation were costing hours that should go to strategy and client work.</li>
+        </ul>
+        <div class="tpl-hint">2–3 bullets. What did you understand that wasn't obvious?</div>
+      </div>
+
+    <div class="divider"></div>
+
+    <div class="move-artifact">
+
+      <div>
+        <div class="zone-label">My Specific Contribution</div>
+        <div class="contribution-text" id="e-contrib">I designed and built the AI skill chain from scratch, starting with a self-directed curriculum after a single project shadow. I authored the team introduction deck and ran the first live pilot end-to-end before releasing the system to peers.</div>
+      </div>
+
+      <div class="artifact-wrap">
+        <div class="artifact-box">
+          <table class="artifact-table">
+            <thead>
+              <tr>
+                <th style="width:44%">Before</th>
+                <th>With AI-Assisted Workflow</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-before">Manual synthesis<br><span style="font-size:9px;color:#ccc">hand-built</span></td>
+                <td class="col-after">Encoded methodology<br><span style="font-size:9px;color:#888">any strategist, day one</span></td>
+              </tr>
+              <tr>
+                <td class="col-before">Knowledge in heads<br><span style="font-size:9px;color:#ccc">depends on team</span></td>
+                <td class="col-after">Repeatable process<br><span style="font-size:9px;color:#888">consistent across squad</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="artifact-source" id="e-artifact-src"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-outcome">
+      <div class="outcome-header">What Changed</div>
+      <div class="metric-block">
+        <div class="metric-number" id="e-m1-num">8</div>
+        <div class="metric-desc" id="e-m1-desc">AI skills designed and built from scratch, encoding methodology proven to streamline work, surface themes, and improve traceability and accountability.</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-number" id="e-m2-num">5<span class="metric-unit">/6</span></div>
+        <div class="metric-desc" id="e-m2-desc">Peer strategists adopted at least one skill within 1 month of release.</div>
+      </div>
+      <div class="metric-block">
+        <div class="metric-number" id="e-m3-num">80%</div>
+        <div class="metric-desc" id="e-m3-desc">Reduction in manual synthesis time, which freed capacity for strategy and client work.</div>
+      </div>
+    </div>
+
+    <div class="bridge-line" id="e-bridge">See how these team efficiencies improved client results in the <a href="kevin_perlas_case_study_design_sprints.html">Design Sprint Innovation</a> case study.</div>
+
+  </div>
+  </div>
+
+
+
+<section class="contact-section">
+  <div class="contact-headline">Let's work together</div>
+  <div class="contact-items">
+    <div class="contact-row">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:kperlas@gmail.com">kperlas@gmail.com</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">503-380-0462</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank">linkedin.com/in/kevinperlas</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Portland, Oregon — open to remote</div>
+    </div>
+  </div>
+</section>
+<footer class="portfolio-footer">
+  <span>Kevin Perlas — Portfolio</span>
+  <span>2026</span>
+</footer>
+
+</div>
+
+<script>
+// IDs of all editable elements
+const EDITABLE_IDS = [
+  'e-name','e-title','e-contact',
+  'e-case-tag',
+  'e-stakes-head','e-stakes-ctx',
+  'e-ins-1','e-ins-2','e-ins-3',
+  'e-contrib',
+  'e-move',
+  'e-artifact-src',
+  'e-m1-num','e-m1-desc',
+  'e-m2-num','e-m2-desc',
+  'e-m3-num','e-m3-desc',
+  'e-footer'
+];
+
+
+let editMode = false;
+
+function toggleEdit() {
+  editMode = !editMode;
+  const btn = document.getElementById('btn-edit');
+  const saveBtn = document.getElementById('btn-save');
+  if (editMode) {
+    btn.textContent = '✓ Done Editing';
+    btn.classList.add('edit-active');
+    saveBtn.style.display = 'inline-block';
+    document.body.classList.add('edit-mode-on');
+    EDITABLE_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.contentEditable = 'true';
+    });
+  } else {
+    btn.textContent = '✎ Edit';
+    btn.classList.remove('edit-active');
+    saveBtn.style.display = 'none';
+    document.body.classList.remove('edit-mode-on');
+    EDITABLE_IDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.contentEditable = 'false';
+    });
+  }
+}
+
+
+function saveHTML() {
+  // Strip edit attributes before saving
+  const clone = document.documentElement.cloneNode(true);
+
+  // Remove contenteditable
+  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+
+  // Reset button states in clone
+  const editBtn = clone.querySelector('#btn-edit');
+  if (editBtn) { editBtn.textContent = '✏️ Edit'; editBtn.classList.remove('edit-active'); }
+  const saveBtn = clone.querySelector('#btn-save');
+  if (saveBtn) saveBtn.style.display = 'none';
+  const hint = clone.querySelector('#edit-hint');
+  if (hint) hint.style.display = 'none';
+
+  const html = '<!DOCTYPE html>\n<html>\n' + clone.innerHTML + '\n</html>';
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kevin_perlas_case_study_ai_skills.html';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  const msg = document.getElementById('save-msg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 3000);
+}
+
+</script>
+
+
+
+
+
+
+</body>
+</html>
