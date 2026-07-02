@@ -232,6 +232,10 @@
     object-position: center top;
     display: block;
   }
+  /* mobile-only duplicate photo, hidden on desktop so desktop layout is untouched */
+  .about-photo-mobile {
+    display: none;
+  }
 
   /* ============ BACKGROUND ============ */
   .section-headline {
@@ -378,8 +382,27 @@
   
   /* ============ MOBILE ============ */
 @media (max-width: 800px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-photo-desktop {
+    display: none;
+  }
+  .about-photo-mobile {
+    display: block;
+    width: 100%;
+    max-width: 240px;
+    margin: 20px auto;
+  }
   .lanes-grid {
-    grid-template-columns: none;
+    grid-template-columns: 1fr;
+  }
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+  .case-card.top,
+  .case-card.bottom {
+    grid-column: span 1;
   }
   .nav-dropdown-menu {
     left: 0px;
@@ -425,9 +448,12 @@
   <div class="about-grid">
     <div>
       <div class="about-greeting" id="e-about-greeting">Hi, I'm Kevin</div>
+      <div class="about-photo about-photo-mobile">
+        <img src="Assets/kevin_headshot.jpeg" alt="Kevin Perlas">
+      </div>
       <div class="about-bio" id="e-about-bio">I'm a design strategist with more than 20 years of experience helping organizations like ServiceNow, Nike, Cisco, and Fortune 500 clients navigate enterprise transformation. I use research, service design, and collaborative strategy to uncover meaningful opportunities, align stakeholders, and design solutions that scale. My background across employee experience, AI-enabled delivery, consulting, and enterprise leadership helps bridge disciplines and move ideas into action.</div>
     </div>
-    <div class="about-photo">
+    <div class="about-photo about-photo-desktop">
       <img src="Assets/kevin_headshot.jpeg" alt="Kevin Perlas">
     </div>
   </div>
