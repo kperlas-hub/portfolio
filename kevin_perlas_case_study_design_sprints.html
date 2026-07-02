@@ -346,6 +346,22 @@
     font-style: italic;
   }
 
+  /* ============ MOBILE ============ */
+  @media (max-width: 800px) {
+  .lanes-grid {
+    grid-template-columns: none;
+  }
+  .nav-dropdown-menu {
+    left: 0px;
+}
+  .zone-outcome {
+    grid-template-columns: (1);
+  }
+  .move-artifact {
+    padding: 10px;
+  }
+}
+
 </style>
 </head>
 <body class="">
@@ -366,8 +382,6 @@
     </div>
     <a href="index.html#contact">Contact</a>
     <a href="https://linkedin.com/in/kevinperlas" target="_blank">LinkedIn</a>
-    <button class="nav-edit" id="btn-edit" onclick="toggleEdit()">&#9998; Edit</button>
-    <button class="nav-save" id="btn-save" onclick="saveHTML()">&#128190; Save</button>
   </div>
 </nav>
 <div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
