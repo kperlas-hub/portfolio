@@ -114,6 +114,12 @@
     font-size: 12.5px; color: #333; line-height: 1.6;
     padding-left: 0;
   }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .contribution-list li {
+    font-size: 12.5px; color: #333; line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
   /* ZONES 4 + ARTIFACT */
   .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
@@ -397,10 +403,9 @@
       <div class="stakes-headline" id="e-stakes-head">When you have a complex or novel business challenge and need alignment and validation in addition to ideas, a design sprint can work wonders.</div>
       <div class="divider"></div>
       <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">Visa's fraud analysts were juggling 11+ disconnected systems to work a single case, and Visa was evaluating ServiceNow as the orchestration layer for a new Integrated Risk Platform. I needed to dig deep to understand the problem, their users, the technology ecosystem, and then create a compelling vision. This fit right into my playbook for a design sprint. The challenge was we needed to present the solution to execs in just 6 weeks.</div>
-      <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
+      <div class="stakes-context" id="e-stakes-ctx">ServiceNow needed to prove to Visa's VP of Product and Risk that we could be the orchestration layer between their back end systems and a new unified front end for internal and external risk management teams. Visa's teams were located across the globe, were juggling 11+ legacy systems, and had different measures of success. I needed to understand the underlying problems, align stakeholders around a shared vision, and partner with the architect and developer to create a compelling solution concept. The big challenge: this typically takes us 10-12 weeks, but the executive pitch was in 6.</div>
       <div class="zone-label" style="margin-top:20px;">MY APPROACH</div>
-      <div class="move-text" id="e-move"><strong>Communicate clearly + set and maintain expectations + leverage AI.</strong> I restructured the typical 12-week discovery-to-solution sequence into a tightly run 6-week sprint. In our kick-off, we laid out the calendar, milestones, risks, and reviews. I began discovery interviews the same day and used a rolling synthesis to ensure scope and architecture always reflected the evolving body of research. We entered our 2-day co-innovation workshop prepared and left with everything the architect and designer needed to build the concept. Visa got the same depth of discovery and the same fidelity of solution, in half the typical time, made possible in part by AI-assisted synthesis tooling I built specifically for this purpose.</div>
+      <div class="move-text" id="e-move"><strong>Communicate clearly + set and maintain expectations + leverage AI.</strong> In our kickoff, I communicated the risks and dependencies to keep us on track towards delivery, so everyone knew the stakes. I began discovery interviews the same day and facilitated a rolling synthesis through our discovery phase so scope and architecture always reflected the evolving body of research. We entered our 2-day co-innovation workshop prepared and left with everything the architect and designer needed to build the concept. Visa got the same depth of discovery and the same fidelity of solution, in half the typical time, made possible in part by AI-assisted synthesis tooling I built specifically for this purpose.</div>
     </div>
 
     <div class="divider"></div>
@@ -408,49 +413,29 @@
     <div class="zone-insights">
         <div class="zone-label">INSIGHTS AND FACTORS</div>
         <ul>
-          <li id="e-ins-1">Awareness of the platform vision was inconsistent. Reviewers, supervisors, and product leads across four countries each held a different piece of the problem and their own version of success.</li>
-          <li id="e-ins-2">An executive decision-making meeting was a forcing function to the timeline. Discovery, synthesis, in-person co-innovation, and solution definition were compressed with little room for slippage.</li>
-          <li id="e-ins-3">I created an AI-powered toolset to accelerate and automate tasks that were previously manual and time-consuming. The toolset improved data retention and usage and ensured the team delivered all requirements.</li>
+          <li id="e-ins-1">Most fraud decisions can be automated, but when analysts are required, they need data from multiple sources in seconds. The system of the future augments that data with AI-driven decision support that indicates urgency, priority, outliers, and defensible recommendations.</li>
+          <li id="e-ins-2">Our demo couldn't just show features. It needed to visualize a holistic vision for a more efficient, integrated way a fraud case could flow between systems and people until resolution.</li>
+          <li id="e-ins-3">The AI tool chain I built specifically for design sprints accelerated and automated tasks that were previously manual and time-consuming, improved data retention and traceability, and accelerated delivery.</li>
         </ul>
-        <div class="tpl-hint">2–3 bullets. What did you understand that wasn't obvious?</div>
       </div>
 
     <div class="divider"></div>
 
     <div class="move-artifact">
 
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <div class="contribution-text" id="e-contrib">I was the sole client-facing strategist, accountable for both the quality of the engagement and the calendar. I scoped and ran 16 stakeholder interviews across the US, UK, Brazil, and Australia, then sequenced and co-facilitated the three-day Atlanta workshop that turned the findings into a validated future-state vision and reference architecture. I completed all this all 6 weeks from kickoff to readout.</div>
+      <div class="artifact-wrap">
+        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
+        <div class="contribution-text" id="e-outcomes-text">Following the executive demonstration, Visa's VP of Product and Risk concluded with, “We're all in.” The account team received a verbal commitment to move forward, validating both the solution vision and the accelerated discovery approach. It was also the account team's first design sprint, and they stated desire to work together for future engagements.</div>
       </div>
 
-      <div class="artifact-wrap">
-        <div class="zone-label" id="e-outcomes-label">The Outcomes</div>
-        <div class="artifact-box">
-          <table class="artifact-table">
-            <thead>
-              <tr>
-                <th style="width:44%">Typical Engagement</th>
-                <th>This Sprint</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-before">12 weeks<br><span style="font-size:9px;color:#ccc">kickoff to readout</span></td>
-                <td class="col-after">6 weeks<br><span style="font-size:9px;color:#888">kickoff to readout</span></td>
-              </tr>
-              <tr>
-                <td class="col-before">Discovery, then solution<br><span style="font-size:9px;color:#ccc">sequential phases</span></td>
-                <td class="col-after">Discovery, validation &amp; solution build<br><span style="font-size:9px;color:#888">run in parallel</span></td>
-              </tr>
-              <tr>
-                <td class="col-before">Compressed timeline risk<br><span style="font-size:9px;color:#ccc">often costs fidelity</span></td>
-                <td class="col-after">Full fidelity held<br><span style="font-size:9px;color:#888">purchasing commitment secured</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="artifact-source" id="e-artifact-src"></div>
-        </div>
+      <div>
+        <div class="zone-label">My Specific Contribution</div>
+        <ul class="contribution-list" id="e-contrib">
+          <li>Was the primary point of contact for our account team and the client through this design sprint.</li>
+          <li>Created the project plan, ran discovery interviews, planned and facilitated the on-site workshop, and led data synthesis.</li>
+          <li>Created the AI toolchain that ingested, managed, synthesized, and tracked data and insights, while adhering to human-in-the-loop reviews and gateways</li>
+          <li>Guided the architect and developer from research through concept creation</li>
+        </ul>
       </div>
 
     </div>
@@ -518,7 +503,7 @@ const EDITABLE_IDS = [
   'e-contrib',
   'e-move',
   'e-outcomes-label',
-  'e-artifact-src',
+  'e-outcomes-text',
   'e-m1-num','e-m1-desc',
   'e-m2-num','e-m2-desc',
   'e-m3-num','e-m3-desc',
