@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: Arial, sans-serif;
@@ -53,26 +53,47 @@
     flex-direction: column;
   }
 
-  /* HEADER */
-  .header {
-    padding: 28px 44px 20px;
-    border-bottom: 2px solid #1a1a1a;
+  /* HERO */
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
+  }
+  .hero-content {
+    position: absolute;
+    inset: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 44px 26px;
   }
-  .name {
-    font-family: Arial, sans-serif;
-    font-size: 28px; font-weight: 700; color: #0F766E;
-    letter-spacing: -0.5px; line-height: 1;
+  .hero-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 10px;
   }
-  .title-line {
-    font-size: 11px; font-weight: 500; color: #666;
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;
+  .hero-headline {
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 700; color: #fff;
+    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
   }
-  .contact { text-align: right; font-size: 11px; color: #666; line-height: 1.8; }
 
-  /* CASE LABEL */
+  /* CASE LABEL (kept for reference sections below hero, unused in hero variant) */
   .case-label {
     padding: 12px 44px;
     display: flex; align-items: center; justify-content: space-between;
@@ -125,6 +146,19 @@
   .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
   .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
   .move-text strong { color: #1a1a1a; font-weight: 600; }
+
+  /* MY APPROACH IMAGE */
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-text { flex: 1; min-width: 0; }
+  .approach-image { flex: 1; }
+  .approach-image img { width: 100%; height: auto; display: block; }
+  .pd-frame { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
+  .pd-frame img { width: 100%; height: auto; display: block; }
+  .pd-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
+  .img-placeholder {
+    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
+  }
 
   .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
   .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
@@ -361,6 +395,18 @@
   .move-artifact {
     padding: 10px;
   }
+  .approach-block {
+    flex-direction: column;
+  }
+  .approach-image {
+    order: -1;
+  }
+  .hero-content {
+    padding: 18px 20px 20px;
+  }
+  .hero-tag {
+    margin-bottom: 8px;
+  }
 }
 
 </style>
@@ -388,20 +434,36 @@
 <div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
 <div class="page" id="page">
 
-  <div class="case-label">
-    <div class="tag" id="e-case-tag">Case Study: Service Design for Performance Management &nbsp;·&nbsp; ServiceNow Global People &nbsp;·&nbsp; 2021–2023</div>
+  <div class="hero">
+    <img class="hero-image" src="Assets/perf_mgmt_hero.png" alt="Leader workshop: journey mapping and service blueprinting session">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag" id="e-case-tag">Case Study: Service Design for Performance Management &nbsp;·&nbsp; ServiceNow Global People &nbsp;·&nbsp; 2021–2023</div>
+      <div class="hero-headline" id="e-stakes-head">Leadership knew performance management was broken. They didn't know what to fix, in what order, or what good would look like on the other side.</div>
+    </div>
   </div>
 
   <div class="body">
 
     <div class="zone-stakes">
-      <div class="stakes-headline" id="e-stakes-head">Leadership knew performance management was broken. They didn't know what to fix, in what order, or what good would look like on the other side.</div>
-      <div class="divider"></div>
       <div class="zone-label">THE SITUATION</div>
       <div class="stakes-context" id="e-stakes-ctx">ServiceNow's VP of Performance and Development came in with a shared conviction among HR executives: the existing system wasn't working. Employees felt the process was opaque and disconnected from pay. Managers weren't having real development conversations. Goal cadences didn't match the actual pace of the business. Feedback culture was actively discouraging growth. The instinct was to redesign. The problem was where to start and what to prioritize.</div>
       <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
-      <div class="zone-label" style="margin-top:20px;">MY APPROACH</div>
-      <div class="move-text" id="e-move"><strong>Make the complexity visible before trying to simplify it.</strong> I started by focusing on what problems we were trying to solve. I designed a structured discovery process with 100+ leaders and employees over two years to map the full performance experience, revealing where it broke down, why, and for whom. Journey maps and service blueprints made the interdependencies legible to the VP and her team for the first time. Real data revealed the severity and frequency of problems, making prioritization easy. Cross-functional design sprints generated solution concepts that were immediately usable by IT partners, who we included in the process.</div>
+
+      <div class="divider"></div>
+
+      <div class="approach-block">
+        <div class="approach-text">
+          <div class="zone-label">MY APPROACH</div>
+          <div class="move-text" id="e-move"><strong>Make the complexity visible before trying to simplify it.</strong> I started by focusing on what problems we were trying to solve. I designed a structured discovery process with 100+ leaders and employees over two years to map the full performance experience, revealing where it broke down, why, and for whom. Journey maps and service blueprints made the interdependencies legible to the VP and her team for the first time. Real data revealed the severity and frequency of problems, making prioritization easy. Cross-functional design sprints generated solution concepts that were immediately usable by IT partners, who we included in the process.</div>
+        </div>
+        <div class="approach-image">
+          <div class="pd-frame">
+            <img src="Assets/perf_mgmt_body.png" alt="Performance Development service blueprint mapping the manager and people-leader experience across a full performance cycle">
+            <div class="pd-caption">Performance Development service blueprint</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -427,10 +489,10 @@
       <div>
         <div class="zone-label">My Specific Contribution</div>
         <ul class="contribution-list" id="e-contrib">
-          <li>Partnered directly with the VP of Performance and Development to understand and track against needs</li>
-          <li>Designed the end-to-end service design process</li>
-          <li>Planned, conducted, and led manager and individual contributor research, leader workshop, and prototype design sprints</li>
-          <li>Produced, iterated, and socialized journey maps and service blueprints</li>
+          <li>Partnered directly with the VP of Performance and Development to understand and track against needs.</li>
+          <li>Designed the end-to-end service design process.</li>
+          <li>Planned, conducted, and led manager and individual contributor research, leader workshop, and prototype design sprints.</li>
+          <li>Produced, iterated, and socialized journey maps and service blueprints.</li>
         </ul>
       </div>
   </div>
@@ -495,6 +557,7 @@ const EDITABLE_IDS = [
   'e-contrib',
   'e-move',
   'e-outcomes-label',
+  'e-outcomes-text',
   'e-artifact-src',
   'e-m1-num','e-m1-desc',
   'e-m2-num','e-m2-desc',

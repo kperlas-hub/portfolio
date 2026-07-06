@@ -53,6 +53,46 @@
     flex-direction: column;
   }
 
+  /* HERO */
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
+  }
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 44px 26px;
+  }
+  .hero-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 10px;
+  }
+  .hero-headline {
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 700; color: #fff;
+    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
+  }
+
   /* HEADER */
   .header {
     padding: 28px 44px 20px;
@@ -114,11 +154,30 @@
     font-size: 12.5px; color: #333; line-height: 1.6;
     padding-left: 0;
   }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .contribution-list li {
+    font-size: 12.5px; color: #333; line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
   /* ZONES 4 + ARTIFACT */
   .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
   .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
   .move-text strong { color: #1a1a1a; font-weight: 600; }
+
+  /* MY APPROACH IMAGE */
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-text { flex: 1; min-width: 0; }
+  .approach-image { flex: 1; }
+  .approach-image img { width: 100%; height: auto; display: block; }
+  .framed-image { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
+  .framed-image img { width: 100%; height: auto; display: block; }
+  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
+  .img-placeholder {
+    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
+  }
 
   .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
   .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
@@ -360,6 +419,19 @@
   .move-artifact {
     padding: 10px;
   }
+  .approach-block {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .approach-image {
+    order: -1;
+  }
+  .hero-content {
+    padding: 18px 20px 20px;
+  }
+  .hero-tag {
+    margin-bottom: 8px;
+  }
 }
 
 </style>
@@ -387,20 +459,35 @@
 <div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
 <div class="page" id="page">
 
-  <div class="case-label">
-    <div class="tag" id="e-case-tag">Case Study: AI Skills for Design Discovery &nbsp;·&nbsp; ServiceNow Workflow Design Studio &nbsp;·&nbsp; 2025–2026</div>
+  <div class="hero">
+    <img class="hero-image" src="Assets/ai_skills_hero.png" alt="Dual-monitor workstation with AI skills strategy framework and Claude project chat open">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag" id="e-case-tag">Case Study: AI Skills for Design Discovery &nbsp;·&nbsp; ServiceNow Workflow Design Studio &nbsp;·&nbsp; 2025–2026</div>
+      <div class="hero-headline" id="e-stakes-head">A high-performing team was struggling to scale. Their work was excellent and leadership wanted more.</div>
+    </div>
   </div>
 
   <div class="body">
 
     <div class="zone-stakes">
-      <div class="stakes-headline" id="e-stakes-head">A high-performing team was struggling to scale. Their work was excellent and leadership wanted more.</div>
-      <div class="divider"></div>
       <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">ServiceNow's Workflow Design Studio had a 10-year track record of delivering results for ServiceNow customers. Engagements ran 10–12 weeks, often longer. There was executive pressure to compress timelines so the team could handle more volume without cutting scope or adding headcount.</div>
-      <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
-      <div class="zone-label" style="margin-top:20px;">MY APPROACH</div>
-      <div class="move-text" id="e-move"><strong>Prove it before releasing it.</strong> Prior to proposing a new workflow or running a training session, I built 8 AI skills and proved the system solo on a live client engagement before sharing anything with the team. Once validated, the team was eager to apply the efficiencies for themselves.</div>
+      <div class="stakes-context" id="e-stakes-ctx">ServiceNow's Workflow Design Studio had a 10-year track record of delivering results for ServiceNow customers and account teams. Engagements ran 10–12 weeks, often longer. There was executive pressure to compress timelines so the team could handle more volume without cutting scope or adding headcount. The team had tried various approaches and tactics over the years, but none proved to be reusable or scalable.</div>
+
+      <div class="divider"></div>
+
+      <div class="approach-block">
+        <div class="approach-text">
+          <div class="zone-label">MY APPROACH</div>
+          <div class="move-text" id="e-move"><strong>Leverage AI as an intelligent assistant.</strong> I shadowed two strategic enagements to assess where the team was spending its time, which activities required a human, and which could be automated. I prototyped a tool chain composed of 8 AI skills and tested it on a live client engagement. It passed with flying colors with a few opportunities for optimization. I led a team training and provided access to the tool set, and my peers were eager to apply the efficiencies for themselves.</div>
+        </div>
+        <div class="approach-image">
+          <div class="framed-image">
+            <img src="Assets/ai_skills_body.svg" alt="AI skills hybrid diagram">
+            <div class="frame-caption">AI skills hybrid diagram</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -412,40 +499,24 @@
           <li id="e-ins-2">The directive to "use AI" was org-wide. Nobody had connected it to the team's actual performance objective: freeing up capacity for strategy and client work, not just checking an "AI adoption" box.</li>
           <li id="e-ins-3">Synthesis and documentation were costing hours that should go to strategy and client work.</li>
         </ul>
-        <div class="tpl-hint">2–3 bullets. What did you understand that wasn't obvious?</div>
       </div>
 
     <div class="divider"></div>
 
     <div class="move-artifact">
 
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <div class="contribution-text" id="e-contrib">I designed and built the AI skill chain from scratch, starting with a self-directed curriculum after a single project shadow. I authored the team introduction deck and ran the first live pilot end-to-end before releasing the system to peers.</div>
+      <div class="artifact-wrap">
+        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
+        <div class="contribution-text" id="e-outcomes-text">Enabled strategists to reallocate their valuable time toward strategic decision-making and client management by replacing manual, time consuming synthesis and tracking with an encoded, AI-driven methodology they could plug into their existing workflow. Improved data retention and relevance by providing strategists with a reliable, traceable source of truth throughout the engagement.</div>
       </div>
 
-      <div class="artifact-wrap">
-        <div class="artifact-box">
-          <table class="artifact-table">
-            <thead>
-              <tr>
-                <th style="width:44%">Before</th>
-                <th>With AI-Assisted Workflow</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-before">Manual synthesis<br><span style="font-size:9px;color:#ccc">hand-built</span></td>
-                <td class="col-after">Encoded methodology<br><span style="font-size:9px;color:#888">any strategist, day one</span></td>
-              </tr>
-              <tr>
-                <td class="col-before">Knowledge in heads<br><span style="font-size:9px;color:#ccc">depends on team</span></td>
-                <td class="col-after">Repeatable process<br><span style="font-size:9px;color:#888">consistent across squad</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="artifact-source" id="e-artifact-src"></div>
-        </div>
+      <div>
+        <div class="zone-label">My Specific Contribution</div>
+        <ul class="contribution-list" id="e-contrib">
+          <li>Designed and built the AI skill chain from scratch.</li>
+          <li>Successfully ran the first live pilot end-to-end and updated skills to optimize them.</li>
+          <li>Created and executed the plan to release the toolset to my peers.</li>
+        </ul>
       </div>
 
     </div>
@@ -512,6 +583,8 @@ const EDITABLE_IDS = [
   'e-ins-1','e-ins-2','e-ins-3',
   'e-contrib',
   'e-move',
+  'e-outcomes-label',
+  'e-outcomes-text',
   'e-artifact-src',
   'e-m1-num','e-m1-desc',
   'e-m2-num','e-m2-desc',

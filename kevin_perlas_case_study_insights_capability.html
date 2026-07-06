@@ -53,6 +53,46 @@
     flex-direction: column;
   }
 
+  /* HERO */
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
+  }
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 28px 44px 26px;
+  }
+  .hero-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 10px;
+  }
+  .hero-headline {
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 700; color: #fff;
+    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
+  }
+
   /* HEADER */
   .header {
     padding: 28px 44px 20px;
@@ -114,11 +154,30 @@
     font-size: 12.5px; color: #333; line-height: 1.6;
     padding-left: 0;
   }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .contribution-list li {
+    font-size: 12.5px; color: #333; line-height: 1.5;
+    padding-left: 14px; position: relative;
+  }
+  .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
   /* ZONES 4 + ARTIFACT */
   .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
   .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
   .move-text strong { color: #1a1a1a; font-weight: 600; }
+
+  /* MY APPROACH IMAGE */
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-text { flex: 1; min-width: 0; }
+  .approach-image { flex: 1; }
+  .approach-image img { width: 100%; height: auto; display: block; }
+  .framed-image { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
+  .framed-image img { width: 100%; height: auto; display: block; }
+  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
+  .img-placeholder {
+    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
+    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
+  }
 
   .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
   .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
@@ -355,6 +414,18 @@
   .move-artifact {
     padding: 10px;
   }
+  .approach-block {
+    flex-direction: column;
+  }
+  .approach-image {
+    order: -1;
+  }
+  .hero-content {
+    padding: 18px 20px 20px;
+  }
+  .hero-tag {
+    margin-bottom: 8px;
+  }
 }
 
 </style>
@@ -382,20 +453,35 @@
 <div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
 <div class="page" id="page">
 
-  <div class="case-label">
-    <div class="tag" id="e-case-tag">Case Study: Building Insights Capability &nbsp;·&nbsp; Nike &amp; ServiceNow &nbsp;·&nbsp; 2019-2025</div>
+  <div class="hero">
+    <img class="hero-image" src="Assets/insights_capability_hero.png" alt="Team reviewing printed research artifacts spread across a conference table">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag" id="e-case-tag">Case Study: Building Insights Capability &nbsp;·&nbsp; Nike &amp; ServiceNow &nbsp;·&nbsp; 2019-2025</div>
+      <div class="hero-headline" id="e-stakes-head">Human Resources had no structured way to gather qualitative feedback from employees. I closed that gap twice.</div>
+    </div>
   </div>
 
   <div class="body">
 
     <div class="zone-stakes">
-      <div class="stakes-headline" id="e-stakes-head">Human Resources had no structured way to gather qualitative feedback from employees. I built the capability from scratch, twice.</div>
-      <div class="divider"></div>
       <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">Large enterprises like Nike and ServiceNow usually have mature employee voice programs that survey employees annually. They excel at identifying what's working well, what isn't, and what shifts year over year, but they leave a gap in understanding true sentiment and root causes of issues. At Nike, I stood up Employee Experience Insiders, a qualitative panel that generated insights informing decisions for 75,000+ employees. Years later at ServiceNow, when the need resurfaced I repeated the model and again provided HR leaders and product teams with actionable, data-driven insights needed to move their work forward with precision.</div>
-      <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
-      <div class="zone-label" style="margin-top:20px;">MY APPROACH</div>
-      <div class="move-text" id="e-move"><strong>Focus on the human voices.</strong>&nbsp;Data science teams took care of the quantitative. I complemented that with equal vigor by building a repeatable qualitative insight infrastructure that reduced dependency on HRBP-gated access, accelerated research cycles, and created reusable employee intelligence for product and program decisions.</div>
+      <div class="stakes-context" id="e-stakes-ctx">Large enterprises like Nike and ServiceNow usually have mature employee voice programs that survey employees annually. They excel at identifying what's working well, what isn't, and what shifts year over year, but they leave a gap in understanding true sentiment and root causes of issues. At Nike, I set the strategy and led the team that built Employee Experience Insiders, a qualitative panel that generated insights informing decisions for 75,000+ employees. Years later at ServiceNow, when the need resurfaced, I built the same model myself end to end, and again delivered HR leaders and product teams the actionable, data-driven insights they needed to move their work forward with precision.</div>
+
+      <div class="divider"></div>
+
+      <div class="approach-block">
+        <div class="approach-text">
+          <div class="zone-label">MY APPROACH</div>
+          <div class="move-text" id="e-move"><strong>Focus on the human voices.</strong>&nbsp;Data science teams took care of the quantitative. I complemented that with equal vigor, at Nike by setting the strategy and directing the team that built it, at ServiceNow by building it myself. Both programs resulted in a repeatable qualitative insight infrastructure that reduced dependency on HRBP-gated access, accelerated research cycles, and created reusable employee intelligence for product and program decisions.</div>
+        </div>
+        <div class="approach-image">
+          <div class="framed-image">
+            <img src="Assets/insights_capability_body.png" alt="EX Insiders microsite">
+            <div class="frame-caption">EX Insiders microsite</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="divider"></div>
@@ -403,48 +489,27 @@
     <div class="zone-insights">
         <div class="zone-label">INSIGHTS AND FACTORS</div>
         <ul>
-          <li id="e-ins-1">Employees want to be heard. They want their input to make a difference, otherwise they'll stop responding. With Experience Insiders, employees felt like they belonged to something that improved how they and their co-workers experience the workplace.</li>
+          <li id="e-ins-1">Employees want to be heard. With Experience Insiders, employees felt like they belonged to something that improved how they and their co-workers experience the workplace. We closed the loop with them after every activity so they knew their input was making a difference.</li>
           <li id="e-ins-2">A known panel improved our ability to make connections purely anonymous data couldn't. It also enabled us to understand how changes over time affected the same people. When necessary, we could cross-check with data from random stratified samples.</li>
           <li id="e-ins-3">At Nike and ServiceNow, a major speed bottleneck was employee access. Employee contact at times had to route through HRBPs as gatekeepers. Panelists who'd opted in directly could be reached without that approval step, and that single change was a major win.</li>
         </ul>
-        <div class="tpl-hint">2–3 bullets. What did you understand that wasn't obvious?</div>
       </div>
 
     <div class="divider"></div>
 
     <div class="move-artifact">
 
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <div class="contribution-text" id="e-contrib">At Nike, the team I managed built and operated Experience Insiders end to end, recruitment, confidentiality, governance, study design, and closing the loop by reporting outcomes to participants. At ServiceNow, as a team of one, I built the entire system myself, including the use of low code/no code toolsets to build the digital touch points.</div>
+      <div class="artifact-wrap">
+        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
+        <div class="contribution-text" id="e-outcomes-text">Replaced a one-time annual snapshot with a standing, known panel that could be re-engaged over time. Closing the loop, reporting findings back to participants, built trust and kept response rates high. At ServiceNow, removing the HRBP approval gate entirely gave research direct, opt-in access to employees.</div>
       </div>
 
-      <div class="artifact-wrap">
-        <div class="artifact-box">
-          <table class="artifact-table">
-            <thead>
-              <tr>
-                <th style="width:44%">Before</th>
-                <th>What I Built</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-before">Annual snapshot survey<br><span style="font-size:9px;color:#ccc">one-time, anonymous</span></td>
-                <td class="col-after">Standing, known panel<br><span style="font-size:9px;color:#888">recruited, screened, longitudinal</span></td>
-              </tr>
-              <tr>
-                <td class="col-before">No way to close the loop<br><span style="font-size:9px;color:#ccc">respondents never heard back</span></td>
-                <td class="col-after">Confidential from stakeholders<br><span style="font-size:9px;color:#888">findings reported back to participants</span></td>
-              </tr>
-              <tr>
-                <td class="col-before">HRBP-gated access (ServiceNow)<br><span style="font-size:9px;color:#ccc">approval required per request</span></td>
-                <td class="col-after">Opt-in, direct access<br><span style="font-size:9px;color:#888">panelists reachable without the gate</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="artifact-source" id="e-artifact-src"></div>
-        </div>
+      <div>
+        <div class="zone-label">My Specific Contribution</div>
+        <ul class="contribution-list" id="e-contrib">
+          <li>At Nike, set the strategy and led the team that built and operated Experience Insiders end to end: recruitment, confidentiality, governance, and study design. The team did the hands-on build; I directed the approach and made the calls on scope, governance, and priorities.</li>
+          <li>At ServiceNow, built the entire system myself as a team of one, including low code/no code toolsets for the digital touch points.</li>
+        </ul>
       </div>
 
     </div>
@@ -509,6 +574,8 @@ const EDITABLE_IDS = [
   'e-ins-1','e-ins-2','e-ins-3',
   'e-contrib',
   'e-move',
+  'e-outcomes-label',
+  'e-outcomes-text',
   'e-artifact-src',
   'e-m1-num','e-m1-desc',
   'e-m2-num','e-m2-desc',
