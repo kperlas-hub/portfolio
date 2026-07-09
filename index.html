@@ -201,7 +201,7 @@
   /* ============ ABOUT ============ */
   .about-grid {
     display: grid;
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: 1fr 180px;
     gap: 44px;
     align-items: start;
   }
@@ -235,6 +235,14 @@
   /* mobile-only duplicate photo, hidden on desktop so desktop layout is untouched */
   .about-photo-mobile {
     display: none;
+  }
+  /* desktop photo sized down from the shared 240x300 .about-photo default so the
+     grid row (which sizes to the tallest column) isn't forced taller than the
+     bio text, which was leaving a large gap before the next section. Mobile
+     uses .about-photo-mobile above and is unaffected by this override. */
+  .about-photo.about-photo-desktop {
+    width: 180px;
+    height: 220px;
   }
 
   /* ============ BACKGROUND ============ */
@@ -328,6 +336,23 @@
     color: #0F766E;
     letter-spacing: 0.5px;
   }
+  .case-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .case-tag {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #0F766E;
+    background: #EEF8F7;
+    border: 1px solid #CDEEEA;
+    border-radius: 20px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
 
   /* ============ CONTACT ============ */
   .contact-section {
@@ -341,6 +366,11 @@
     color: white;
     letter-spacing: -0.5px;
     line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .contact-subhead {
+    font-size: 15px;
+    color: #999;
     margin-bottom: 32px;
   }
   .contact-items {
@@ -426,10 +456,10 @@
     <div class="nav-dropdown">
       <button class="nav-dropdown-btn">Work &#9662;</button>
       <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_design_sprints.html">Design Sprints</a>
         <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html">Service Design for Performance Management</a>
+        <a href="kevin_perlas_case_study_design_sprints.html">Design Sprints</a>
         <a href="kevin_perlas_case_study_insights_capability.html">Building Insights Capability</a>
+        <a href="kevin_perlas_case_study_perf_mgmt.html">Service Design for Performance Management</a>
         <a href="kevin_perlas_case_study_persona_program.html">Global People Persona Program</a>
       </div>
     </div>
@@ -440,7 +470,7 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="home">
-  <div class="hero-title" id="e-cover-title">Enterprise Design Strategist specializing in AI-enabled discovery, human-centered transformation, and employee experience.</div>
+  <div class="hero-title" id="e-cover-title">Enterprise Design Strategist specializing in human-centered design, employee experience, and AI-enabled workflows.</div>
 </section>
 
 <!-- ============ ABOUT ============ -->
@@ -451,7 +481,7 @@
       <div class="about-photo about-photo-mobile">
         <img src="Assets/kevin_headshot.jpeg" alt="Kevin Perlas">
       </div>
-      <div class="about-bio" id="e-about-bio">I'm a design strategist with more than 20 years of experience helping organizations like ServiceNow, Nike, Cisco, and Fortune 500 clients navigate enterprise transformation. I use research, service design, and collaborative strategy to uncover meaningful opportunities, align stakeholders, and design solutions that scale. My background across employee experience, AI-enabled delivery, consulting, and enterprise leadership helps bridge disciplines and move ideas into action.</div>
+      <div class="about-bio" id="e-about-bio">I'm a design strategist with more than 20 years of experience helping organizations like ServiceNow, Nike, Cisco, and Fortune 500 clients navigate large-scale change. I use research, service design, and collaborative strategy to uncover meaningful opportunities, align stakeholders, and design solutions that scale. My background across employee experience, AI-enabled delivery, consulting, and enterprise leadership helps bridge disciplines and move ideas into action.</div>
     </div>
     <div class="about-photo about-photo-desktop">
       <img src="Assets/kevin_headshot.jpeg" alt="Kevin Perlas">
@@ -462,13 +492,13 @@
 <!-- ============ BACKGROUND ============ -->
 <section class="section">
   <div class="section-headline" id="e-bg-headline">Perspective From Strategy to Execution</div>
-  <div class="section-sub" id="e-bg-sub">I bring the rare combination of consultant, practitioner, operator, and buyer-side experience. I know how transformation is sold, why it is bought, and what it takes to make it work inside the enterprise.</div>
+  <div class="section-sub" id="e-bg-sub">I bring the rare combination of consultant, practitioner, and customer-side experience. I know how transformation is sold, why it is bought, and what it takes to make it work inside the enterprise.</div>
   <div class="lanes-grid">
     <div class="lane">
       <div class="lane-number">01</div>
       <div class="lane-title" id="e-l1-title">AI PRACTITIONER</div>
-      <div class="lane-years" id="e-l1-years">ServiceNow · 2025–2026</div>
-      <div class="lane-desc" id="e-l1-desc">Built the actual AI skill chain, ran a live client engagement solo to test and prove it, then taught the system to peers. I've deployed AI for real business results.</div>
+      <div class="lane-years" id="e-l1-years">ServiceNow · 2025-2026</div>
+      <div class="lane-desc" id="e-l1-desc">Built a library of itnerconnected AI skills, ran a live client engagement solo to test and prove its efficacy, then taught the system to peers. I've deployed AI for real business results.</div>
     </div>
     <div class="lane">
       <div class="lane-number">02</div>
@@ -480,7 +510,7 @@
       <div class="lane-number">03</div>
       <div class="lane-title" id="e-l3-title">HR/EX PRACTITIONER</div>
       <div class="lane-years" id="e-l3-years">Nike · ServiceNow Global People</div>
-      <div class="lane-desc" id="e-l3-desc">Built programs for 100,000+ employees. Led through enterprise transformation, aligned diverse stakeholders, and built programs that scaled across a global workforce.</div>
+      <div class="lane-desc" id="e-l3-desc">Built programs for 100,000+ employees. Led through large-scale people, process, and technology change, aligned diverse stakeholders, and built programs that served global workforces.</div>
     </div>
     <div class="lane">
       <div class="lane-number">04</div>
@@ -497,32 +527,37 @@
   <div class="section-sub" id="e-cases-sub">How I think, what I built, and what changed.</div>
   <div class="cases-grid">
 
-    <a class="case-card top" href="kevin_perlas_case_study_design_sprints.html">
-      <div class="case-title" id="e-cs1-title">Design Sprints</div>
-      <div class="case-desc" id="e-cs1-desc">How I compressed a typical 12-week discovery sprint 6 weeks and piloted successfully with Visa's Fraud Operations team while maintaining quality and solution fidelity.</div>
-      <div class="case-link">View case study →</div>
-    </a>
-
     <a class="case-card top" href="kevin_perlas_case_study_ai_skills.html">
       <div class="case-title" id="e-cs2-title">AI Skills for Design Discovery</div>
+      <div class="case-tags"><span class="case-tag">AI Practitioner</span></div>
       <div class="case-desc" id="e-cs2-desc">How I built 8 AI skills that cut manual synthesis time 80% and got adopted by 5 of 6 peer strategists within a month, uplifting the throughput of the entire team.</div>
       <div class="case-link">View case study →</div>
     </a>
 
-    <a class="case-card top" href="kevin_perlas_case_study_perf_mgmt.html">
-      <div class="case-title" id="e-cs3-title">Service Design for Performance Management</div>
-      <div class="case-desc" id="e-cs3-desc">How I co-innovated with 100+ leaders and employees over 2 years to redesign performance management end-to-end for 30,000+ employees at ServiceNow.</div>
+    <a class="case-card top" href="kevin_perlas_case_study_design_sprints.html">
+      <div class="case-title" id="e-cs1-title">Design Sprints</div>
+      <div class="case-tags"><span class="case-tag">Customer Consultant</span></div>
+      <div class="case-desc" id="e-cs1-desc">How I compressed a typical 12-week discovery sprint 6 weeks and piloted successfully with Visa's Fraud Operations team while maintaining quality and solution fidelity.</div>
       <div class="case-link">View case study →</div>
     </a>
 
-    <a class="case-card bottom" href="kevin_perlas_case_study_insights_capability.html">
+    <a class="case-card top" href="kevin_perlas_case_study_insights_capability.html">
       <div class="case-title" id="e-cs4-title">Building Insights Capability</div>
+      <div class="case-tags"><span class="case-tag">HR/EX Practitioner</span></div>
       <div class="case-desc" id="e-cs4-desc">How I led the strategy and team behind Nike's Experience Insiders (700+ volunteers, 25 countries), then built ServiceNow's EX Insiders myself, cutting time-to-insight by 75%.</div>
+      <div class="case-link">View case study →</div>
+    </a>
+
+    <a class="case-card bottom" href="kevin_perlas_case_study_perf_mgmt.html">
+      <div class="case-title" id="e-cs3-title">Service Design for Performance Management</div>
+      <div class="case-tags"><span class="case-tag">HR/EX Practitioner</span><span class="case-tag">Service and UX Designer</span></div>
+      <div class="case-desc" id="e-cs3-desc">How I co-innovated with 100+ leaders and employees over 2 years to redesign performance management end-to-end for 30,000+ employees at ServiceNow.</div>
       <div class="case-link">View case study →</div>
     </a>
 
     <a class="case-card bottom" href="kevin_perlas_case_study_persona_program.html">
       <div class="case-title" id="e-cs5-title">Global People Persona Program</div>
+      <div class="case-tags"><span class="case-tag">HR/EX Practitioner</span><span class="case-tag">Service and UX Designer</span></div>
       <div class="case-desc" id="e-cs5-desc">How I turned a vague ask for "personas" into a full research program with governance embedded so using a persona became an integral part of shipping a product.</div>
       <div class="case-link">View case study →</div>
     </a>
@@ -533,6 +568,7 @@
 <!-- ============ CONTACT ============ -->
 <section class="contact-section" id="contact">
   <div class="contact-headline" id="e-contact-headline">Let's work together</div>
+  <div class="contact-subhead" id="e-contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
   <div class="contact-items">
     <div class="contact-row">
       <div class="contact-label">Email</div>
@@ -573,7 +609,7 @@ const EDITABLE_IDS = [
   'e-cs3-title','e-cs3-desc',
   'e-cs4-title','e-cs4-desc',
   'e-cs5-title','e-cs5-desc',
-  'e-contact-headline','e-contact-email','e-contact-phone','e-contact-li','e-contact-loc',
+  'e-contact-headline','e-contact-subhead','e-contact-email','e-contact-phone','e-contact-li','e-contact-loc',
   'e-footer-year'
 ];
 
