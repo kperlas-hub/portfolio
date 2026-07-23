@@ -17,8 +17,38 @@
   /* ============ CONTACT ============ */
   .contact-section {
     background: white;
-    padding: 48px 44px;
     margin-bottom: 4px;
+  }
+  .contact-inner {
+    padding: 48px 44px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 44px;
+    align-items: start;
+  }
+  /* crop away the top half of the photo, keep the bottom (subject) half */
+  .contact-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+  /* full-bleed version of the photo, shown above the text on mobile only */
+  .contact-photo-bleed {
+    display: none;
+  }
+  .contact-photo-bleed img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    object-position: center bottom;
   }
   .contact-headline {
     font-size: 40px;
@@ -61,8 +91,20 @@
 
   /* ============ MOBILE ============ */
   @media (max-width: 800px) {
+    .contact-inner {
+      padding: 28px 20px;
+    }
     .contact-row {
       align-items: flex-start;
+    }
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .contact-photo-desktop {
+      display: none;
+    }
+    .contact-photo-bleed {
+      display: block;
     }
   }
 </style>
@@ -84,7 +126,7 @@
     <span class="nav-active">Let's connect</span>
   </div>
   <div class="nav-links-narrow">
-    <a class="nav-link" href="index.html">About me</a>
+    <a class="nav-link" href="index.html">About</a>
     <span class="nav-sep">|</span>
     <div class="nav-dropdown">
       <button class="nav-dropdown-btn">Case studies &#9662;</button>
@@ -97,34 +139,42 @@
       </div>
     </div>
     <span class="nav-sep">|</span>
-    <span class="nav-active">Let's connect</span>
+    <span class="nav-active">Connect</span>
   </div>
 </nav>
 
 <!-- ============ CONTACT ============ -->
 <section class="contact-section">
-  <div class="contact-headline">Let's work together</div>
-  <div class="contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
-  <div class="contact-items">
-    <div class="contact-row">
-      <div class="contact-label">Email</div>
-      <div class="contact-value"><a href="mailto:kperlas@gmail.com">kperlas@gmail.com</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Phone</div>
-      <div class="contact-value">503-380-0462</div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">LinkedIn</div>
-      <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank">linkedin.com/in/kevinperlas</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Location</div>
-      <div class="contact-value">Portland, Oregon — open to remote</div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Resume</div>
-      <div class="contact-value"><a href="Assets/Perlas_Kevin_Resume_2026Jul20.pdf" download>Download resume (PDF)</a></div>
+  <div class="contact-photo-bleed">
+    <img src="Assets/Lets_work_together.jpg" alt="Kevin Perlas crouched down with his dog in a park">
+  </div>
+  <div class="contact-inner">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-headline">Let's work together</div>
+        <div class="contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
+        <div class="contact-items">
+          <div class="contact-row">
+            <div class="contact-label">Email</div>
+            <div class="contact-value"><a href="mailto:kperlas@gmail.com">kperlas@gmail.com</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">LinkedIn</div>
+            <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank">linkedin.com/in/kevinperlas</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Location</div>
+            <div class="contact-value">Portland, Oregon — open to remote</div>
+          </div>
+          <div class="contact-row">
+            <div class="contact-label">Resume</div>
+            <div class="contact-value"><a href="Assets/Perlas_Kevin_Resume_2026Jul20.pdf" download>Download resume (PDF)</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-photo contact-photo-desktop">
+        <img src="Assets/Lets_work_together.jpg" alt="Kevin Perlas crouched down with his dog in a park">
+      </div>
     </div>
   </div>
 </section>
