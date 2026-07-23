@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,40 +12,6 @@
     background: #f0f0f0;
     color: #1a1a1a;
   }
-  .controls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    font-size: 13px;
-    color: #555;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .controls-group { display: flex; gap: 10px; align-items: center; }
-  .controls-sep { width: 1px; height: 24px; background: #ccc; }
-  .btn {
-    padding: 8px 18px;
-    border: 1px solid #ccc;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 13px;
-    font-family: Arial, sans-serif;
-    color: #333;
-    transition: background 0.15s;
-    white-space: nowrap;
-  }
-  .btn:hover { background: #f5f5f5; }
-  .btn.primary { background: #1a1a1a; color: white; border-color: #1a1a1a; }
-  .btn.primary:hover { background: #333; }
-  .btn.edit-active { background: #2563eb; color: white; border-color: #2563eb; }
-  .btn.edit-active:hover { background: #1d4ed8; }
-
-  .save-msg {
-    font-size: 12px; color: #2563eb; font-style: italic;
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .save-msg.show { opacity: 1; }
 
   .page {
     width: 100%;
@@ -209,191 +176,13 @@
   .page.tpl .tpl-hint { display: block; }
   .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
 
-  /* EDIT MODE */
-  [contenteditable="true"] {
-    outline: 2px dashed #2563eb;
-    border-radius: 2px;
-    padding: 2px 4px;
-    cursor: text;
-    min-width: 20px;
-    display: inline-block;
-  }
-  [contenteditable="true"]:focus { outline: 2px solid #2563eb; background: #eff6ff; }
-  .edit-hint {
-    display: none;
-    font-size: 11px; color: #2563eb; font-style: italic;
-    margin-bottom: 8px; text-align: center;
-  }
-  .edit-mode-on .edit-hint { display: block; }
-
-  /* ============ SITE NAV ============ */
-  .site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 44px;
-    height: 52px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .nav-logo {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #0F766E;
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .nav-links > a {
-    font-size: 12px;
-    color: #555;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-  }
-  .nav-links > a:hover { color: #1a1a1a; }
-  .nav-dropdown { position: relative; }
-  .nav-dropdown-btn {
-    font-size: 12px;
-    color: #555;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    letter-spacing: 0.3px;
-    padding: 0;
-  }
-  .nav-dropdown-btn:hover { color: #1a1a1a; }
-  .nav-dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    min-width: 300px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding-top: 12px;
-    padding-bottom: 6px;
-    z-index: 200;
-  }
-  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-  .nav-dropdown-menu a {
-    display: block;
-    padding: 9px 16px;
-    font-size: 12px;
-    color: #333;
-    text-decoration: none;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .nav-dropdown-menu a:last-child { border-bottom: none; }
-  .nav-dropdown-menu a:hover { background: #f7f7f7; color: #0F766E; }
-  .nav-edit {
-    font-size: 11px;
-    padding: 5px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: white;
-    color: #333;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-  }
-  .nav-edit:hover { background: #f5f5f5; }
-  .nav-edit.edit-active { background: #2563eb; color: white; border-color: #2563eb; }
-  .nav-save {
-    font-size: 11px;
-    padding: 5px 12px;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    background: #1a1a1a;
-    color: white;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    display: none;
-  }
-  .nav-save:hover { background: #333; }
-  .edit-hint-banner {
-    display: none;
-    font-size: 11px;
-    color: #2563eb;
-    font-style: italic;
-    text-align: center;
-    padding: 8px;
-    background: #eff6ff;
-    border-bottom: 1px solid #bfdbfe;
-  }
-  body.edit-mode-on .edit-hint-banner { display: block; }
-
-
-  /* ============ CONTACT SECTION ============ */
-  .contact-section {
-    background: #1a1a1a;
-    padding: 48px 44px;
-  }
-  .contact-headline {
-    font-size: 40px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
-  .contact-subhead {
-    font-size: 15px;
-    color: #999;
-    margin-bottom: 32px;
-  }
-  .contact-items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .contact-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #666;
-    width: 72px;
-    flex-shrink: 0;
-  }
-  .contact-value {
-    font-size: 14px;
-    color: #ccc;
-  }
-  .contact-value a { color: #0F766E; text-decoration: none; }
-  .contact-value a:hover { color: #5BBFB8; }
-  .portfolio-footer {
-    background: white;
-    padding: 10px 44px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: #aaa;
-    font-style: italic;
-  }
+  
 
   /* ============ MOBILE ============ */
   @media (max-width: 800px) {
   .lanes-grid {
     grid-template-columns: none;
   }
-  .nav-dropdown-menu {
-    left: 0px;
-}
   .zone-outcome {
     grid-template-columns: 1fr;
   }
@@ -420,26 +209,38 @@
 
 <nav class="site-nav">
   <a class="nav-logo" href="index.html">Kevin Perlas</a>
-  <div class="nav-links">
-    <a href="index.html#about">About</a>
+  <div class="nav-links-wide">
+    <a class="nav-link" href="index.html">About me</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-case-label">Case studies:</span>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+    <span class="nav-active">Service design</span>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <span class="nav-sep">|</span>
+    <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
+  </div>
+  <div class="nav-links-narrow">
+    <a class="nav-link" href="index.html">About me</a>
+    <span class="nav-sep">|</span>
     <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Work &#9662;</button>
+      <button class="nav-dropdown-btn">Case studies &#9662;</button>
       <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_design_sprints.html">Design Sprints</a>
-        <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html">Service Design for Performance Management</a>
-        <a href="kevin_perlas_case_study_insights_capability.html">Building Insights Capability</a>
-        <a href="kevin_perlas_case_study_persona_program.html">Global People Persona Program</a>
+        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+        <span class="nav-active">Service design</span>
+        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
       </div>
     </div>
-    <a href="index.html#contact">Contact</a>
-    <a href="https://linkedin.com/in/kevinperlas" target="_blank">LinkedIn</a>
+    <span class="nav-sep">|</span>
+    <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
 </nav>
-<div class="edit-hint-banner" id="edit-hint">&#9998; Click any text to edit it directly on the page</div>
 <div class="page" id="page">
 
-  <div class="hero">
+  <div class="hero" id="top">
     <img class="hero-image" src="Assets/perf_mgmt_hero.png" alt="Leader workshop: journey mapping and service blueprinting session">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -523,111 +324,12 @@
   </div>
   </div>
 
-
-
-<section class="contact-section">
-  <div class="contact-headline">Let's work together</div>
-  <div class="contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
-  <div class="contact-items">
-    <div class="contact-row">
-      <div class="contact-label">Email</div>
-      <div class="contact-value"><a href="mailto:kperlas@gmail.com">kperlas@gmail.com</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Phone</div>
-      <div class="contact-value">503-380-0462</div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">LinkedIn</div>
-      <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank">linkedin.com/in/kevinperlas</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Location</div>
-      <div class="contact-value">Portland, Oregon — open to remote</div>
-    </div>
-  </div>
-</section>
 <footer class="portfolio-footer">
-  <span>Kevin Perlas — Portfolio</span>
-  <span>2026</span>
+  <span>Kevin Perlas</span>
+  <a class="footer-top-link" href="#top">Return to top</a>
 </footer>
 
 </div>
-
-<script>
-const EDITABLE_IDS = [
-  'e-name','e-title','e-contact',
-  'e-case-tag',
-  'e-stakes-head','e-stakes-ctx',
-  'e-ins-1','e-ins-2','e-ins-3',
-  'e-contrib',
-  'e-move',
-  'e-outcomes-label',
-  'e-outcomes-text',
-  'e-artifact-src',
-  'e-m1-num','e-m1-desc',
-  'e-m2-num','e-m2-desc',
-  'e-m3-num','e-m3-desc',
-  'e-footer'
-];
-
-
-let editMode = false;
-
-function toggleEdit() {
-  editMode = !editMode;
-  const btn = document.getElementById('btn-edit');
-  const saveBtn = document.getElementById('btn-save');
-  if (editMode) {
-    btn.textContent = '✓ Done Editing';
-    btn.classList.add('edit-active');
-    saveBtn.style.display = 'inline-block';
-    document.body.classList.add('edit-mode-on');
-    EDITABLE_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.contentEditable = 'true';
-    });
-  } else {
-    btn.textContent = '✎ Edit';
-    btn.classList.remove('edit-active');
-    saveBtn.style.display = 'none';
-    document.body.classList.remove('edit-mode-on');
-    EDITABLE_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.contentEditable = 'false';
-    });
-  }
-}
-
-
-function saveHTML() {
-  const clone = document.documentElement.cloneNode(true);
-  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
-  const editBtn = clone.querySelector('#btn-edit');
-  if (editBtn) { editBtn.textContent = '✏️ Edit'; editBtn.classList.remove('edit-active'); }
-  const saveBtn = clone.querySelector('#btn-save');
-  if (saveBtn) saveBtn.style.display = 'none';
-  const hint = clone.querySelector('#edit-hint');
-  if (hint) hint.style.display = 'none';
-
-  const html = '<!DOCTYPE html>\n<html>\n' + clone.innerHTML + '\n</html>';
-  const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'kevin_perlas_case_study_perf_mgmt.html';
-  a.click();
-  URL.revokeObjectURL(url);
-
-  const msg = document.getElementById('save-msg');
-  msg.classList.add('show');
-  setTimeout(() => msg.classList.remove('show'), 3000);
-}
-
-</script>
-
-
-
 
 </body>
 </html>

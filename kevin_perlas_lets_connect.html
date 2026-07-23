@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Let's Connect — Kevin Perlas</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    color: #1a1a1a;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact-section {
+    background: white;
+    padding: 48px 44px;
+    margin-bottom: 4px;
+  }
+  .contact-headline {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .contact-subhead {
+    font-size: 15px;
+    color: #777;
+    margin-bottom: 32px;
+  }
+  .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .contact-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    width: 72px;
+    flex-shrink: 0;
+  }
+  .contact-value {
+    font-size: 14px;
+    color: #444;
+  }
+  .contact-value a { color: var(--blue); text-decoration: none; }
+  .contact-value a:hover { color: var(--blue-hover); }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 800px) {
+    .contact-row {
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="nav-logo" href="index.html">Kevin Perlas</a>
+  <div class="nav-links-wide">
+    <a class="nav-link" href="index.html">About me</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-case-label">Case studies:</span>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <span class="nav-sep">|</span>
+    <span class="nav-active">Let's connect</span>
+  </div>
+  <div class="nav-links-narrow">
+    <a class="nav-link" href="index.html">About me</a>
+    <span class="nav-sep">|</span>
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn">Case studies &#9662;</button>
+      <div class="nav-dropdown-menu">
+        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+        <a href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
+        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+      </div>
+    </div>
+    <span class="nav-sep">|</span>
+    <span class="nav-active">Let's connect</span>
+  </div>
+</nav>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact-section">
+  <div class="contact-headline">Let's work together</div>
+  <div class="contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
+  <div class="contact-items">
+    <div class="contact-row">
+      <div class="contact-label">Email</div>
+      <div class="contact-value"><a href="mailto:kperlas@gmail.com">kperlas@gmail.com</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Phone</div>
+      <div class="contact-value">503-380-0462</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">LinkedIn</div>
+      <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank">linkedin.com/in/kevinperlas</a></div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Portland, Oregon — open to remote</div>
+    </div>
+    <div class="contact-row">
+      <div class="contact-label">Resume</div>
+      <div class="contact-value"><a href="Assets/Perlas_Kevin_Resume_2026Jul20.pdf" download>Download resume (PDF)</a></div>
+    </div>
+  </div>
+</section>
+
+<footer class="portfolio-footer">
+  <span>Kevin Perlas</span>
+</footer>
+
+</body>
+</html>

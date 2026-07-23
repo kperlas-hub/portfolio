@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kevin Perlas — Design Strategist</title>
+<link rel="stylesheet" href="styles.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,125 +13,6 @@
     background: #f0f0f0;
     color: #1a1a1a;
   }
-
-  /* ============ NAV ============ */
-  .site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 44px;
-    height: 52px;
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .nav-logo {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #0F766E;
-    text-decoration: none;
-  }
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .nav-links > a {
-    font-size: 12px;
-    color: #555;
-    text-decoration: none;
-    letter-spacing: 0.3px;
-  }
-  .nav-links > a:hover { color: #1a1a1a; }
-  .nav-dropdown { position: relative; }
-  .nav-dropdown-btn {
-    font-size: 12px;
-    color: #555;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    letter-spacing: 0.3px;
-    padding: 0;
-  }
-  .nav-dropdown-btn:hover { color: #1a1a1a; }
-  .nav-dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    min-width: 300px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    padding-top: 12px;
-    padding-bottom: 6px;
-    z-index: 200;
-  }
-  .nav-dropdown:hover .nav-dropdown-menu { display: block; }
-  .nav-dropdown-menu a {
-    display: block;
-    padding: 9px 16px;
-    font-size: 12px;
-    color: #333;
-    text-decoration: none;
-    border-bottom: 1px solid #f0f0f0;
-  }
-  .nav-dropdown-menu a:last-child { border-bottom: none; }
-  .nav-dropdown-menu a:hover { background: #f7f7f7; color: #0F766E; }
-  .nav-edit {
-    font-size: 11px;
-    padding: 5px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background: white;
-    color: #333;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-  }
-  .nav-edit:hover { background: #f5f5f5; }
-  .nav-edit.edit-active { background: #2563eb; color: white; border-color: #2563eb; }
-  .nav-save {
-    font-size: 11px;
-    padding: 5px 12px;
-    border: 1px solid #1a1a1a;
-    border-radius: 4px;
-    background: #1a1a1a;
-    color: white;
-    cursor: pointer;
-    font-family: Arial, sans-serif;
-    display: none;
-  }
-  .nav-save:hover { background: #333; }
-
-  /* EDIT HINT BANNER */
-  .edit-hint-banner {
-    display: none;
-    font-size: 11px;
-    color: #2563eb;
-    font-style: italic;
-    text-align: center;
-    padding: 8px;
-    background: #eff6ff;
-    border-bottom: 1px solid #bfdbfe;
-  }
-  body.edit-mode-on .edit-hint-banner { display: block; }
-
-  /* EDIT MODE */
-  [contenteditable="true"] {
-    outline: 2px dashed #2563eb;
-    border-radius: 2px;
-    padding: 2px 4px;
-    cursor: text;
-    min-width: 20px;
-    display: inline-block;
-  }
-  [contenteditable="true"]:focus { outline: 2px solid #2563eb; background: #eff6ff; }
 
   /* ============ SECTIONS ============ */
   .section {
@@ -141,21 +23,43 @@
 
   /* ============ HERO ============ */
   .hero {
-    background: white;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    max-height: 300px;
+    overflow: hidden;
+    background: #1a1a1a;
     margin-bottom: 4px;
-    padding: 20px 44px 44px;
-    /* border-bottom: 1px solid #1a1a1a; */
+  }
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    display: block;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10,10,10,0.15) 0%, rgba(10,10,10,0.45) 55%, rgba(10,10,10,0.85) 100%);
+  }
+  .hero-content {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding: 28px 44px 32px;
   }
   .hero-title {
     font-size: 40px;
     font-weight: 700;
-    color: #1a1a1a;
+    color: white;
     line-height: 1.08;
     letter-spacing: -1px;
-    margin-bottom: 36px;
+    max-width: 900px;
   }
   .hero-actions {
     display: flex;
@@ -333,7 +237,7 @@
   .case-link {
     font-size: 11px;
     font-weight: 600;
-    color: #0F766E;
+    color: var(--blue);
     letter-spacing: 0.5px;
   }
   .case-tags {
@@ -354,64 +258,11 @@
     white-space: nowrap;
   }
 
-  /* ============ CONTACT ============ */
-  .contact-section {
-    background: #1a1a1a;
-    padding: 48px 44px;
-    margin-bottom: 4px;
-  }
-  .contact-headline {
-    font-size: 40px;
-    font-weight: 700;
-    color: white;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-    margin-bottom: 12px;
-  }
-  .contact-subhead {
-    font-size: 15px;
-    color: #999;
-    margin-bottom: 32px;
-  }
-  .contact-items {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-  .contact-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .contact-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #666;
-    width: 72px;
-    flex-shrink: 0;
-  }
-  .contact-value {
-    font-size: 14px;
-    color: #ccc;
-  }
-  .contact-value a { color: #0F766E; text-decoration: none; }
-  .contact-value a:hover { color: #5BBFB8; }
-
-  /* ============ FOOTER ============ */
-  .portfolio-footer {
-    background: white;
-    padding: 10px 44px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 10px;
-    color: #aaa;
-    font-style: italic;
-  }
-  
   /* ============ MOBILE ============ */
 @media (max-width: 800px) {
+  .hero-content {
+    padding: 18px 20px 20px;
+  }
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -434,9 +285,6 @@
   .case-card.bottom {
     grid-column: span 1;
   }
-  .nav-dropdown-menu {
-    left: 0px;
-}
   .zone-outcome {
     grid-template-columns: 1fr;
   }
@@ -451,26 +299,43 @@
 
 <nav class="site-nav">
   <a class="nav-logo" href="index.html">Kevin Perlas</a>
-  <div class="nav-links">
-    <a href="#about">About</a>
+  <div class="nav-links-wide">
+    <span class="nav-active">About me</span>
+    <span class="nav-sep">|</span>
+    <span class="nav-case-label">Case studies:</span>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <span class="nav-sep">|</span>
+    <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
+  </div>
+  <div class="nav-links-narrow">
+    <span class="nav-active">About me</span>
+    <span class="nav-sep">|</span>
     <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Work &#9662;</button>
+      <button class="nav-dropdown-btn">Case studies &#9662;</button>
       <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a>
-        <a href="kevin_perlas_case_study_design_sprints.html">Design Sprints</a>
-        <a href="kevin_perlas_case_study_insights_capability.html">Building Insights Capability</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html">Service Design for Performance Management</a>
-        <a href="kevin_perlas_case_study_persona_program.html">Global People Persona Program</a>
+        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
+        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+        <a href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
+        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
       </div>
     </div>
-    <a href="#contact">Contact</a>
-    <a href="https://linkedin.com/in/kevinperlas" target="_blank">LinkedIn</a>
+    <span class="nav-sep">|</span>
+    <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
 </nav>
 
 <!-- ============ HERO ============ -->
-<section class="hero" id="home">
-  <div class="hero-title" id="e-cover-title">Enterprise Design Strategist specializing in human-centered design, employee experience, and AI-enabled workflows.</div>
+<section class="hero" id="top">
+  <img class="hero-image" src="Assets/Portland_waterfront.jpeg" alt="Aerial view of Portland's Tom McCall Waterfront Park along the Willamette River during cherry blossom season, with the downtown skyline in the background">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-title" id="e-cover-title">Enterprise Design Strategist specializing in human-centered design, employee experience, and AI-enabled workflows.</div>
+  </div>
 </section>
 
 <!-- ============ ABOUT ============ -->
@@ -565,99 +430,10 @@
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section class="contact-section" id="contact">
-  <div class="contact-headline" id="e-contact-headline">Let's work together</div>
-  <div class="contact-subhead" id="e-contact-subhead">Currently seeking full-time employment in Design Strategy or Employee Experience leadership roles. Portland, Oregon or remote.</div>
-  <div class="contact-items">
-    <div class="contact-row">
-      <div class="contact-label">Email</div>
-      <div class="contact-value"><a href="mailto:kperlas@gmail.com" id="e-contact-email">kperlas@gmail.com</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Phone</div>
-      <div class="contact-value" id="e-contact-phone">503-380-0462</div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">LinkedIn</div>
-      <div class="contact-value"><a href="https://linkedin.com/in/kevinperlas" target="_blank" id="e-contact-li">linkedin.com/in/kevinperlas</a></div>
-    </div>
-    <div class="contact-row">
-      <div class="contact-label">Location</div>
-      <div class="contact-value" id="e-contact-loc">Portland, Oregon — open to remote</div>
-    </div>
-  </div>
-</section>
-
 <footer class="portfolio-footer">
-  <span>Kevin Perlas — Portfolio</span>
-  <span id="e-footer-year">2026</span>
+  <span>Kevin Perlas</span>
+  <a class="footer-top-link" href="#top">Return to top</a>
 </footer>
-
-<script>
-const EDITABLE_IDS = [
-  'e-cover-title','e-cover-c1','e-cover-c2','e-cover-c3',
-  'e-about-greeting','e-about-bio',
-  'e-bg-headline','e-bg-sub',
-  'e-l1-title','e-l1-years','e-l1-desc',
-  'e-l2-title','e-l2-years','e-l2-desc',
-  'e-l3-title','e-l3-years','e-l3-desc',
-  'e-l4-title','e-l4-years','e-l4-desc',
-  'e-cases-headline','e-cases-sub',
-  'e-cs1-title','e-cs1-desc',
-  'e-cs2-title','e-cs2-desc',
-  'e-cs3-title','e-cs3-desc',
-  'e-cs4-title','e-cs4-desc',
-  'e-cs5-title','e-cs5-desc',
-  'e-contact-headline','e-contact-subhead','e-contact-email','e-contact-phone','e-contact-li','e-contact-loc',
-  'e-footer-year'
-];
-
-let editMode = false;
-
-function toggleEdit() {
-  editMode = !editMode;
-  const btn = document.getElementById('btn-edit');
-  const saveBtn = document.getElementById('btn-save');
-  if (editMode) {
-    btn.textContent = '✓ Done Editing';
-    btn.classList.add('edit-active');
-    saveBtn.style.display = 'inline-block';
-    document.body.classList.add('edit-mode-on');
-    EDITABLE_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.contentEditable = 'true';
-    });
-  } else {
-    btn.textContent = '✎ Edit';
-    btn.classList.remove('edit-active');
-    saveBtn.style.display = 'none';
-    document.body.classList.remove('edit-mode-on');
-    EDITABLE_IDS.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.contentEditable = 'false';
-    });
-  }
-}
-
-function saveHTML() {
-  const clone = document.documentElement.cloneNode(true);
-  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
-  const editBtn = clone.querySelector('#btn-edit');
-  if (editBtn) { editBtn.textContent = '✎ Edit'; editBtn.classList.remove('edit-active'); }
-  const saveBtn = clone.querySelector('#btn-save');
-  if (saveBtn) saveBtn.style.display = 'none';
-  clone.querySelector('body').classList.remove('edit-mode-on');
-  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
-  const blob = new Blob([html], { type: 'text/html' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'index.html';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-</script>
 
 </body>
 </html>
