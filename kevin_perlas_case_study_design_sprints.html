@@ -7,226 +7,73 @@
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #1a1a1a;
-  }
-
-  .page {
-    width: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-  }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #1a1a1a; }
+  .page { width: 100%; background: white; display: flex; flex-direction: column; }
 
   /* HERO */
-  .hero {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
-  }
-  .hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px 44px 26px;
-  }
-  .hero-tag {
-    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.7); margin-bottom: 10px;
-  }
-  .hero-headline {
-    font-size: clamp(18px, 3vw, 32px);
-    font-weight: 700; color: #fff;
-    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
-  }
+  .hero { position: relative; width: 100%; aspect-ratio: 16 / 7; overflow: hidden; background: #1a1a1a; }
+  .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%); }
+  .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 44px 26px; }
+  .hero-tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .hero-headline { font-size: clamp(18px, 3vw, 32px); font-weight: 700; color: #fff; line-height: 1.3; max-width: 900px; }
 
-  /* HEADER */
-  .header {
-    padding: 28px 44px 20px;
-    border-bottom: 2px solid #1a1a1a;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .name {
-    font-family: Arial, sans-serif;
-    font-size: 28px; font-weight: 700; color: #0F766E;
-    letter-spacing: -0.5px; line-height: 1;
-  }
-  .title-line {
-    font-size: 11px; font-weight: 500; color: #666;
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;
-  }
-  .contact { text-align: right; font-size: 11px; color: #666; line-height: 1.8; }
-
-  /* CASE LABEL */
-  .case-label {
-    padding: 12px 44px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: #f7f7f7; border-bottom: 1px solid #e8e8e8;
-  }
-  .tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #888; }
+  /* DRAFT BANNER */
+  .draft-banner { background: #fef3c7; border-bottom: 2px solid #d97706; padding: 12px 44px; font-size: 11.5px; color: #92400e; line-height: 1.6; }
+  .draft-banner strong { color: #78350f; }
 
   /* BODY */
   .body { flex: 1; padding: 30px 44px 48px; display: flex; flex-direction: column; }
-
-  .zone-label {
-    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: #bbb; margin-bottom: 8px;
-  }
-
-  /* ZONE 1 */
-  .zone-stakes { margin-bottom: 20px; }
-  .stakes-headline {
-    font-size: 21px; font-weight: 700; color: #1a1a1a;
-    line-height: 1.3; font-family: Arial, sans-serif;
-  }
-  .stakes-context { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.55; }
-
+  .zone-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+  .zone-num { color: #0F766E; }
   .divider { height: 1px; background: #e8e8e8; margin: 28px 0; }
 
-  /* TWO COL */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+  /* GAP BLOCKS (new sections needing Kevin's authorship) */
+  .gap-block { border: 2px dashed #d97706; background: #fffbeb; border-radius: 4px; padding: 16px 18px; margin-top: 8px; }
+  .gap-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: #d97706; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .gap-prompt { font-size: 12.5px; color: #92400e; line-height: 1.6; font-style: italic; }
 
-  /* ZONE 2 */
-  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .zone-insights ul li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  /* DATA FLAG (existing content, but a number/claim worth double-checking) */
+  .flag-block { border: 1px solid #93c5fd; background: #eff6ff; border-radius: 4px; padding: 12px 16px; margin-top: 10px; }
+  .flag-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: #2563eb; padding: 3px 8px; border-radius: 3px; margin-bottom: 8px; }
+  .flag-text { font-size: 12px; color: #1e3a8a; line-height: 1.55; }
+
+  .source-note { font-size: 10px; color: #999; font-style: italic; margin-top: 8px; }
+
+  .zone-body-text { font-size: 12.5px; color: #333; line-height: 1.6; }
+  .zone-body-text strong { color: #1a1a1a; font-weight: 600; }
+  .sub-label { font-size: 10.5px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 4px; }
+  .sub-label:first-child { margin-top: 0; }
+
+  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 10px; }
+  .zone-insights ul li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .zone-insights ul li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONE 3 */
-  .contribution-text {
-    font-size: 12.5px; color: #333; line-height: 1.6;
-    padding-left: 0;
-  }
-  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .contribution-list li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .contribution-list li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONES 4 + ARTIFACT */
-  .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
-  .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
-  .move-text strong { color: #1a1a1a; font-weight: 600; }
-
-  /* MY APPROACH IMAGE */
-  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; margin-top: 10px; }
   .approach-text { flex: 1; min-width: 0; }
   .approach-image { flex: 1; }
-  .approach-image img { width: 100%; height: auto; display: block; }
   .framed-image { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
   .framed-image img { width: 100%; height: auto; display: block; }
-  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
-  .img-placeholder {
-    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
-    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
-  }
+  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; }
 
-  .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
-  .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
-  .artifact-table { width: 100%; border-collapse: collapse; font-size: 10px; }
-  .artifact-table th {
-    background: #1a1a1a; color: white; padding: 5px 8px;
-    text-align: left; font-weight: 600; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .artifact-table td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; color: #444; vertical-align: top; line-height: 1.4; }
-  .artifact-table tr:last-child td { border-bottom: none; }
-  .artifact-table tr:nth-child(even) td { background: #f9f9f9; }
-  .col-before { color: #999 !important; }
-  .col-after { color: #1a1a1a !important; font-weight: 500; }
-  .artifact-source { font-size: 9px; color: #aaa; font-style: italic; padding: 5px 8px; }
-
-  /* ZONE 5 */
-  .zone-outcome {
-    background: #1a1a1a; border-radius: 3px; padding: 18px 22px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
+  .zone-outcome { background: #1a1a1a; border-radius: 3px; padding: 18px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
   .outcome-header { grid-column: 1/-1; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #0F766E; margin-bottom: 4px; }
   .metric-block { display: flex; flex-direction: column; gap: 3px; }
-  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; font-family: Arial, sans-serif; line-height: 1; }
+  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; line-height: 1; }
   .metric-unit { font-size: 14px; font-weight: 400; color: #aaa; }
   .metric-desc { font-size: 10.5px; color: #777; line-height: 1.4; margin-top: 2px; }
 
-  /* FOOTER */
-  .footer {
-    padding: 12px 44px; border-top: 1px solid #e8e8e8;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-left { font-size: 10px; color: #aaa; font-style: italic; }
-  .footer-right { font-size: 10px; color: #aaa; }
-
-  /* BRIDGE LINE */
-  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 14px; text-align: center; }
+  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 20px; text-align: center; }
   .bridge-line a { color: var(--blue); font-weight: 600; font-style: normal; text-decoration: none; border-bottom: 1px solid var(--blue); }
-  .bridge-line a:hover { color: var(--blue-hover); border-color: var(--blue-hover); }
 
-  /* TEMPLATE MODE */
-  .page.tpl .stakes-headline,
-  .page.tpl .stakes-context { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li::before { opacity: 0; }
-  .page.tpl .contribution-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .move-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .artifact-box { opacity: 0.15; }
-  .page.tpl .metric-number { background: #444; color: transparent !important; border-radius: 2px; }
-  .page.tpl .metric-unit { opacity: 0; }
-  .page.tpl .metric-desc { background: #555; color: transparent !important; border-radius: 2px; }
-  .page.tpl .tag { color: transparent; background: #ddd; border-radius: 2px; }
-  .page.tpl
-  .page.tpl .tpl-hint { display: block; }
-  .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
-
-  
-
-  /* ============ MOBILE ============ */
   @media (max-width: 800px) {
-  .lanes-grid {
-    grid-template-columns: none;
+    .zone-outcome { grid-template-columns: 1fr; }
+    .approach-block { flex-direction: column; }
   }
-  .zone-outcome {
-    grid-template-columns: 1fr;
-  }
-  .move-artifact {
-    padding: 10px;
-  }
-  .approach-block {
-    flex-direction: column;
-  }
-  .approach-image {
-    order: -1;
-  }
-  .hero-content {
-    padding: 18px 20px 20px;
-  }
-  .hero-tag {
-    margin-bottom: 8px;
-  }
-}
-
 </style>
 </head>
 <body class="">
@@ -238,113 +85,100 @@
     <span class="nav-sep">|</span>
     <span class="nav-case-label">Case studies:</span>
     <span class="nav-active">Design sprints</span>
-    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
-    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
-    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html">Service design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html">Program design</a>
     <span class="nav-sep">|</span>
     <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
-  <div class="nav-links-narrow">
-    <a class="nav-link" href="index.html">About</a>
-    <span class="nav-sep">|</span>
-    <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Case studies &#9662;</button>
-      <div class="nav-dropdown-menu">
-        <span class="nav-active">Design sprints</span>
-        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
-        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
-        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
-      </div>
-    </div>
-    <span class="nav-sep">|</span>
-    <a class="nav-link" href="kevin_perlas_lets_connect.html">Connect</a>
-  </div>
 </nav>
+
 <div class="page" id="page">
 
   <div class="hero" id="top">
     <img class="hero-image" src="Assets/design_sprint_hero.png" alt="Cross-functional team clustered around printed journey maps and screens during a design sprint">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag" id="e-case-tag">Case Study: Design Sprints &nbsp;·&nbsp; ServiceNow Workflow Design Studio &nbsp;·&nbsp; 2026</div>
-      <div class="hero-headline" id="e-stakes-head">When you have a complex or novel business challenge and need alignment and validation in addition to ideas, a design sprint can work wonders.</div>
+      <div class="hero-tag">Case Study: Design Sprints &nbsp;&middot;&nbsp; ServiceNow Workflow Design Studio &nbsp;&middot;&nbsp; 2026</div>
+      <div class="hero-headline">A team with a complex business challenge and in need of alignment was seeking help. Design sprint to the rescue!</div>
     </div>
   </div>
 
   <div class="body">
 
-    <div class="zone-stakes">
-      <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">ServiceNow needed to prove to Visa's VP of Product and Risk that we could be the orchestration layer between their back-end systems and a new unified front end for internal and external risk management teams. Visa's teams were located across the globe, were juggling 11+ legacy systems, and had different measures of success. I needed to understand the underlying problems, align stakeholders around a shared vision, and partner with the architect and developer to create a compelling solution concept. The big challenge: this typically takes us 10-12 weeks, but the executive pitch was in 6.</div>
-      <div class="divider"></div>
+    <div class="zone-shift">
+      <div class="zone-label"><span class="zone-num">1.</span> CONTEXT</div>
+      <div class="zone-body-text">The competitive landscape in payment processing and risk management is getting more crowded, with increased pressure from startups and increased scrutiny from regulators. A Fortune 500 financial services and payment technology company needed to improve its fraud case management capabilities and end-user experience to solidify its position as the market leader. They had a plan to improve their fraud operations but needed a partner to handle the orchestration layer between their back-end systems and a new unified front end. They were evaluating multiple vendors.</div>
+    </div>
 
+    <div class="divider"></div>
+
+    <div class="zone-winners">
+      <div class="zone-label"><span class="zone-num">2.</span> SITUATION</div>
+      <div class="zone-body-text">ServiceNow needed to prove to the client's VP of Product and Risk that we could meet all their tenancy and security requirements as the orchestration layer, but that was table stakes. We also needed to demonstrate value that we could bring to the fraud analyst, issuer, merchant, and purchaser experiences. I needed to understand the underlying problems, align stakeholders around a shared vision, and partner with the architect and developer to create a compelling solution concept. The executive pitch was in 6 weeks, so we needed to move quickly and with precision.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-approach">
+      <div class="zone-label"><span class="zone-num">3.</span> APPROACH</div>
+      <div class="zone-body-text">I led a remote engagement planning session to align on the problem theory, timeline, and expectations for the engagement. By the end of the session, I had a plan for a design sprint that would culminate in a demonstration of how we would meet their needs. The plan included the standard phases of a design sprint, tailored to the needs of the engagement and the schedule constraints posed by the team's geography and schedule requirements.</div>
+      <ul class="contribution-list">
+        <li><strong>Discover</strong> - Conduct deep-dive interviews to learn more about the agreed-upon problem and its surrounding context. I created a set of AI skills to help us catalog and synthesize interview data throughout this phase.</li>
+        <li><strong>Define</strong> - Determine the salient themes and insights we learned in the interviews. With these as a foundation, I prepared the run-of-show, activities, and physical stimulus for the co-innovation session.</li>
+        <li><strong>Sketch + Decide</strong> - Gather the customer and ServiceNow teams in-person to co-innovate around our insights. I facilitated a 2-day workshop among cross-functional leaders and doers so everyone felt heard and had a sense of ownership in the outcomes. We authored design challenge statements that encapsulated our shared goals, then created journeys and mockups that addressed the challenges. We wrapped up by prioritizing the concepts we wanted to bring to life in the solution.</li>
+        <li><strong>Prototype + Validate</strong> - Draw inspiration from the workshop to create a feasible solution on ServiceNow's architecture and solution ecosystem. I ensured my Architect and Developer had everything they needed, including the additional conversations and autonomy to let their talents shine through. Throughout the solution build, I led check-ins with my account team and the customer to ensure our work was directionally correct to increase confidence our solution would land.</li>
+      </ul>
+      <br />
       <div class="approach-block">
         <div class="approach-text">
-          <div class="zone-label">MY APPROACH</div>
-          <div class="move-text" id="e-move"><strong>Communicate clearly + set and maintain expectations + leverage AI.</strong> In our kickoff, I communicated the risks and dependencies to keep us on track towards delivery, so everyone knew the stakes. I began discovery interviews the same day and facilitated a rolling synthesis through our discovery phase so scope and architecture always reflected the evolving body of research. We entered our 2-day co-innovation workshop prepared and left with everything the architect and designer needed to build the concept. Visa got the same depth of discovery and the same fidelity of solution, in half the typical time, made possible in part by AI-assisted synthesis tooling I built specifically for this purpose.</div>
+          <div class="sub-label">What we learned</div>
+          <ul class="contribution-list">
+            <li>The customer's team grew through a series of acquisitions and therefore had non-integrated technical debt and distinct customer bases that had to be served by the new, unified solution.</li>
+            <li>The customer's globally distributed teams were juggling 11+ legacy systems to work each case and had different measures of success.</li>
+            <li>They had an average handling time KPI. Analysts spent the majority of that time on finding and navigating data, which led to them feeling rushed to make judgement.</li>
+            <li>Multiple teams worked in concert to ensure fraud was stopped at different stages in the journey. Each team acted in different systems, yet their work was interconnected in ways that weren't always transparent. The solution needed to leverage progressive disclosure to minimize noise, but enable visibility when necessary.</li>
+            <li>Most fraud decisions can be automated, but when analysts are required, they need data from multiple sources in seconds. The system of the future needs to augment that data with AI-driven decision support that indicates urgency, priority, outliers, and defensible recommendations.</li>
+            <li>Our demo couldn't just show features. It needed to visualize a holistic vision for a more efficient, integrated way a fraud case could flow between systems and people until resolution.</li>
+          </ul>
         </div>
         <div class="approach-image">
           <div class="framed-image">
-            <img src="Assets/design_sprint_body.png" alt="Visa co-innovation workshop">
-            <div class="frame-caption">An example of a design sprint output can be a future state visualization</div>
+            <img src="Assets/design_sprint_body.png" alt="Solution screen">
+            <div class="frame-caption">&nbsp; &nbsp; An example of a design sprint output can be a future state visualization</div>
           </div>
+        </div>
+      </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-evidence">
+      <div class="zone-label"><span class="zone-num">4.</span> OUTCOMES</div>
+      <div class="zone-body-text">Following the executive demonstration, the customer's VP of Product and Risk concluded with, &ldquo;We're all in.&rdquo; The account team received a verbal commitment to move forward, validating both the solution vision and the accelerated discovery approach. It was also their first design sprint, and they committed to using the approach again in future engagements.</div>
+
+      <div class="zone-outcome">
+        <div class="outcome-header">Highlights</div>
+        <div class="metric-block">
+          <div class="metric-number">50%<span class="metric-unit">&nbsp;faster</span></div>
+          <div class="metric-desc">We were able to compress our typical sprint duration without cutting scope or sacrificing solution fidelity by leveraging AI.</div>
+        </div>
+        <!-- <div class="metric-block">
+          <div class="metric-number">16<span class="metric-unit">&nbsp;interviews&nbsp;&nbsp;</span>/ 2<span class="metric-unit"> days</span></div>
+          <div class="metric-desc">Interviews across the US, UK, Brazil, and Australia and 2 in-person workshop days.</div>
+        </div> -->
+        <div class="metric-block">
+          <div class="metric-number">Alignment<span class="metric-unit">&nbsp;achieved</span></div>
+          <div class="metric-desc">Team members from different acquired companies and functional teams agreed we had the right problem identified and concepts selected to develop into a solution.</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">Commitment<span class="metric-unit">&nbsp;secured</span></div>
+          <div class="metric-desc">The customer moved from evaluation to a purchasing commitment. Their decision-maker commented "We're all in" on the solution.</div>
         </div>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="zone-insights">
-        <div class="zone-label">INSIGHTS AND FACTORS</div>
-        <ul>
-          <li id="e-ins-1">Most fraud decisions can be automated, but when analysts are required, they need data from multiple sources in seconds. The system of the future augments that data with AI-driven decision support that indicates urgency, priority, outliers, and defensible recommendations.</li>
-          <li id="e-ins-2">Our demo couldn't just show features. It needed to visualize a holistic vision for a more efficient, integrated way a fraud case could flow between systems and people until resolution.</li>
-          <li id="e-ins-3">The AI tool chain I built specifically for design sprints accelerated and automated tasks that were previously manual and time-consuming, improved data retention and traceability, and accelerated delivery.</li>
-        </ul>
-      </div>
-
-    <div class="divider"></div>
-
-    <div class="move-artifact">
-
-      <div class="artifact-wrap">
-        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
-        <div class="contribution-text" id="e-outcomes-text">Following the executive demonstration, Visa's VP of Product and Risk concluded with, “We're all in.” The account team received a verbal commitment to move forward, validating both the solution vision and the accelerated discovery approach. It was also their first design sprint, and they committed to using the approach again in future engagements.</div>
-      </div>
-
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <ul class="contribution-list" id="e-contrib">
-          <li>Was the primary point of contact for our account team and the client and led the solution presentation.</li>
-          <li>Created the project plan, ran discovery interviews, planned and facilitated the on-site workshop, and led data synthesis.</li>
-          <li>Created the AI toolchain that ingested, managed, synthesized, and tracked data and insights, while adhering to human-in-the-loop reviews and gateways.</li>
-          <li>Guided the architect and developer from research through concept creation.</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="zone-outcome">
-      <div class="outcome-header">What Changed</div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m1-num">50%<span class="metric-unit">&nbsp;faster</span></div>
-        <div class="metric-desc" id="e-m1-desc">12-week engagement compressed to 6, without cutting scope or sacrificing solution fidelity.</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m2-num">16<span class="metric-unit">&nbsp;interviews&nbsp;&nbsp;</span>/ 2<span class="metric-unit"> days</span></div>
-        <div class="metric-desc" id="e-m2-desc">Interviews across the US, UK, Brazil, and Australia and 2 workshop days in Atlanta required rigor and discipline.</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m3-num">Commitment<span class="metric-unit">&nbsp;secured</span></div>
-        <div class="metric-desc" id="e-m3-desc">Visa moved from evaluation to a purchasing commitment. Their decision-maker commented "We're all in" on the solution.</div>
-      </div>
-    </div>
-
-    <div class="bridge-line" id="e-bridge">See the AI skills that powered these results in the <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a> case study.</div>
+    <div class="bridge-line">See the AI skills that powered these results in the <a href="kevin_perlas_case_study_ai_skills.html">AI Skills for Design Discovery</a> case study.</div>
 
   </div>
   </div>

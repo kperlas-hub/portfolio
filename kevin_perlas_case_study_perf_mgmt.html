@@ -7,202 +7,64 @@
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #1a1a1a;
-  }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #1a1a1a; }
+  .page { width: 100%; background: white; display: flex; flex-direction: column; }
 
-  .page {
-    width: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-  }
+  .hero { position: relative; width: 100%; aspect-ratio: 16 / 7; overflow: hidden; background: #1a1a1a; }
+  .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%); }
+  .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 44px 26px; }
+  .hero-tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .hero-headline { font-size: clamp(18px, 3vw, 32px); font-weight: 700; color: #fff; line-height: 1.3; max-width: 900px; }
 
-  /* HERO */
-  .hero {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 35%;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
-  }
-  .hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px 44px 26px;
-  }
-  .hero-tag {
-    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.7); margin-bottom: 10px;
-  }
-  .hero-headline {
-    font-size: clamp(18px, 3vw, 32px);
-    font-weight: 700; color: #fff;
-    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
-  }
+  .draft-banner { background: #fef3c7; border-bottom: 2px solid #d97706; padding: 12px 44px; font-size: 11.5px; color: #92400e; line-height: 1.6; }
+  .draft-banner strong { color: #78350f; }
 
-  /* CASE LABEL (kept for reference sections below hero, unused in hero variant) */
-  .case-label {
-    padding: 12px 44px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: #f7f7f7; border-bottom: 1px solid #e8e8e8;
-  }
-  .tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #888; }
-
-  /* BODY */
   .body { flex: 1; padding: 30px 44px 48px; display: flex; flex-direction: column; }
-
-  .zone-label {
-    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: #bbb; margin-bottom: 8px;
-  }
-
-  /* ZONE 1 */
-  .zone-stakes { margin-bottom: 20px; }
-  .stakes-headline {
-    font-size: 21px; font-weight: 700; color: #1a1a1a;
-    line-height: 1.3; font-family: Arial, sans-serif;
-  }
-  .stakes-context { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.55; }
-
+  .zone-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+  .zone-num { color: #0F766E; }
   .divider { height: 1px; background: #e8e8e8; margin: 28px 0; }
 
-  /* TWO COL */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+  .gap-block { border: 2px dashed #d97706; background: #fffbeb; border-radius: 4px; padding: 16px 18px; margin-top: 8px; }
+  .gap-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: #d97706; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .gap-prompt { font-size: 12.5px; color: #92400e; line-height: 1.6; font-style: italic; }
 
-  /* ZONE 2 */
-  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .zone-insights ul li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .source-note { font-size: 10px; color: #999; font-style: italic; margin-top: 8px; }
+
+  .zone-body-text { font-size: 12.5px; color: #333; line-height: 1.6; }
+  .zone-body-text strong { color: #1a1a1a; font-weight: 600; }
+  .sub-label { font-size: 10.5px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 4px; }
+  .sub-label:first-child { margin-top: 0; }
+
+  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 10px; }
+  .zone-insights ul li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .zone-insights ul li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-   /* ZONE 3 */
-   .contribution-text {
-    font-size: 12.5px; color: #333; line-height: 1.6;
-    padding-left: 0;
-  }
-  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .contribution-list li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .contribution-list li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONES 4 + ARTIFACT */
-  .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
-  .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
-  .move-text strong { color: #1a1a1a; font-weight: 600; }
-
-  /* MY APPROACH IMAGE */
-  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; margin-top: 10px; }
   .approach-text { flex: 1; min-width: 0; }
   .approach-image { flex: 1; }
-  .approach-image img { width: 100%; height: auto; display: block; }
   .pd-frame { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
   .pd-frame img { width: 100%; height: auto; display: block; }
-  .pd-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
-  .img-placeholder {
-    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
-    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
-  }
+  .pd-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; }
 
-  .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
-  .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
-  .artifact-table { width: 100%; border-collapse: collapse; font-size: 10px; }
-  .artifact-table th {
-    background: #1a1a1a; color: white; padding: 5px 8px;
-    text-align: left; font-weight: 600; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .artifact-table td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; color: #444; vertical-align: top; line-height: 1.4; }
-  .artifact-table tr:last-child td { border-bottom: none; }
-  .artifact-table tr:nth-child(even) td { background: #f9f9f9; }
-  .col-before { color: #999 !important; }
-  .col-after { color: #1a1a1a !important; font-weight: 500; }
-  .artifact-source { font-size: 9px; color: #aaa; font-style: italic; padding: 5px 8px; }
-
-  /* ZONE 5 */
-  .zone-outcome {
-    background: #1a1a1a; border-radius: 3px; padding: 18px 22px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
+  .zone-outcome { background: #1a1a1a; border-radius: 3px; padding: 18px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
   .outcome-header { grid-column: 1/-1; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #0F766E; margin-bottom: 4px; }
   .metric-block { display: flex; flex-direction: column; gap: 3px; }
-  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; font-family: Arial, sans-serif; line-height: 1; }
+  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; line-height: 1; }
   .metric-unit { font-size: 14px; font-weight: 400; color: #aaa; }
   .metric-desc { font-size: 10.5px; color: #777; line-height: 1.4; margin-top: 2px; }
 
-  /* FOOTER */
-  .footer {
-    padding: 12px 44px; border-top: 1px solid #e8e8e8;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-left { font-size: 10px; color: #aaa; font-style: italic; }
-  .footer-right { font-size: 10px; color: #aaa; }
+  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 20px; text-align: center; }
+  .bridge-line a { color: var(--blue); font-weight: 600; font-style: normal; text-decoration: none; border-bottom: 1px solid var(--blue); }
 
-  /* TEMPLATE MODE */
-  .page.tpl .stakes-headline,
-  .page.tpl .stakes-context { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li::before { opacity: 0; }
-  .page.tpl .contribution-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .move-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .artifact-box { opacity: 0.15; }
-  .page.tpl .metric-number { background: #444; color: transparent !important; border-radius: 2px; }
-  .page.tpl .metric-unit { opacity: 0; }
-  .page.tpl .metric-desc { background: #555; color: transparent !important; border-radius: 2px; }
-  .page.tpl .tag { color: transparent; background: #ddd; border-radius: 2px; }
-  .page.tpl
-  .page.tpl .tpl-hint { display: block; }
-  .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
-
-  
-
-  /* ============ MOBILE ============ */
   @media (max-width: 800px) {
-  .lanes-grid {
-    grid-template-columns: none;
+    .zone-outcome { grid-template-columns: 1fr; }
+    .approach-block { flex-direction: column; }
   }
-  .zone-outcome {
-    grid-template-columns: 1fr;
-  }
-  .move-artifact {
-    padding: 10px;
-  }
-  .approach-block {
-    flex-direction: column;
-  }
-  .approach-image {
-    order: -1;
-  }
-  .hero-content {
-    padding: 18px 20px 20px;
-  }
-  .hero-tag {
-    margin-bottom: 8px;
-  }
-}
-
 </style>
 </head>
 <body class="">
@@ -213,111 +75,91 @@
     <a class="nav-link" href="index.html">About me</a>
     <span class="nav-sep">|</span>
     <span class="nav-case-label">Case studies:</span>
-    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html">AI skills</a>
     <span class="nav-active">Service design</span>
-    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
-    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html">Program design</a>
     <span class="nav-sep">|</span>
     <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
-  <div class="nav-links-narrow">
-    <a class="nav-link" href="index.html">About</a>
-    <span class="nav-sep">|</span>
-    <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Case studies &#9662;</button>
-      <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-        <span class="nav-active">Service design</span>
-        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
-        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
-      </div>
-    </div>
-    <span class="nav-sep">|</span>
-    <a class="nav-link" href="kevin_perlas_lets_connect.html">Connect</a>
-  </div>
 </nav>
+
 <div class="page" id="page">
 
   <div class="hero" id="top">
     <img class="hero-image" src="Assets/perf_mgmt_hero.png" alt="Leader workshop: journey mapping and service blueprinting session">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag" id="e-case-tag">Case Study: Service Design for Performance Management &nbsp;·&nbsp; ServiceNow Global People &nbsp;·&nbsp; 2021–2023</div>
-      <div class="hero-headline" id="e-stakes-head">Leadership knew performance management was broken. They didn't know what to fix, in what order, or what good would look like on the other side.</div>
+      <div class="hero-tag">Case Study: Service Design for Performance Management &nbsp;&middot;&nbsp; ServiceNow Global People &nbsp;&middot;&nbsp; 2021&ndash;2023</div>
+      <div class="hero-headline">Leadership started a journey to improve performance management. They sought guidance on what to fix, in what order, and what good would look like on the other side.</div>
     </div>
   </div>
 
   <div class="body">
 
-    <div class="zone-stakes">
-      <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">ServiceNow's VP of Performance and Development came in with a shared conviction among HR executives: the existing system wasn't working. Employees felt the process was opaque and disconnected from pay. Managers weren't having real development conversations. Goal cadences didn't match the actual pace of the business. Feedback culture was actively discouraging growth. The instinct was to redesign. The problem was where to start and what to prioritize.</div>
-      <div class="tpl-hint">One sentence. Business-level problem. What would go wrong if this wasn't solved?</div>
-
-      <div class="divider"></div>
-
-      <div class="approach-block">
-        <div class="approach-text">
-          <div class="zone-label">MY APPROACH</div>
-          <div class="move-text" id="e-move"><strong>Make the complexity visible before trying to simplify it.</strong> I started by focusing on what problems we were trying to solve. I designed a structured discovery process with 100+ leaders and employees over two years to map the full performance experience, revealing where it broke down, why, and for whom. Journey maps and service blueprints made the interdependencies legible to the VP and her team for the first time. Real data revealed the severity and frequency of problems, making prioritization easy. Cross-functional design sprints generated solution concepts that were immediately usable by IT partners, who we included in the process.</div>
-        </div>
-        <div class="approach-image">
-          <div class="pd-frame">
-            <img src="Assets/perf_mgmt_body.png" alt="Performance Development service blueprint mapping the manager and people-leader experience across a full performance cycle">
-            <div class="pd-caption">Performance Development service blueprint visualized unknown dependencies</div>
-          </div>
-        </div>
-      </div>
+    <div class="zone-shift">
+      <div class="zone-label"><span class="zone-num">1.</span> CONTEXT</div>
+      <div class="zone-body-text">ServiceNow's employee value proposition (EVP) is known as its People Pact. It frames the company's commitment to employees to "live our best lives, do our best work, and fulfill our purpose together." Introduced in 2001, the Pact is a north star for how it treats employees and what it expects of them in return. It provides the framework and resources for employees to pursue their career ambitions, attain skills, and grow professionally. It also explicitly states that the management of those activities will occur on ServiceNow's own products. </div>
     </div>
 
     <div class="divider"></div>
 
-    <div class="zone-insights">
-        <div class="zone-label">INSIGHTS AND FACTORS</div>
+    <div class="zone-winners">
+      <div class="zone-label"><span class="zone-num">2.</span> SITUATION</div>
+      <div class="zone-body-text">ServiceNow recently appointed a new VP of Performance and Development. She was building a team and a plan for reimagining how ServiceNow would align its people to fulfill its goals, assess their performance, empower them to seek feedback, and structure their ongoing development on ServiceNow. They had a robust working group of senior leaders as well as quantitative data from the company's employee voice surveys (EVS). They needed a partner to help them connect with the general employee and manager populations as well as someone who could provide guidance on stitching it all together.</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-approach">
+      <div class="zone-label"><span class="zone-num">3.</span> APPROACH</div>
+      <div class="zone-body-text"><strong>Start by listening.</strong> After reviewing the EVS data and leader voices, I proposed that we dig deep into the problems surfaced by each. They told us where employee experiences were poor but shed little light on root causes or the business impact of the issues. I detailed a plan to conduct a series of journey mapping sessions with a representative sample of managers and individual contributors (ICs). Each session was a conversation. I invited participants to share their experiences and tell stories of how the moments occurred for them, where there were issues and bright spots, and how their experiences may have differed from what they'd expect or want.</div>
+
+      <div class="approach-block">
+        <div class="approach-text">
+          <div class="zone-body-text"><strong>Follow by mapping.</strong> Those sessions enabled me to visually represent current state of the annual performance lifecycle. First, as journey maps from the perspectives of managers and ICs. These reflected their experiences, steps, activities, feelings, and ideas for improvement. Second, I created a service blueprint that represented the holistyc system including its people, systems, interdependencies, hand-offs, and breaks. These visuals shed light on the highs and lows of the current process. They showed what was working well and the many areas where we needed to focus to improve the future state.</div>
+          <br />
+          <div class="zone-body-text"><strong>Listen some more.</strong> It would have been easy to turn these into slides or a PDF and send them out. But performance management is a big deal. It touches everyone at a company and there are strong feelings about it, many of them negative. For us to succeed, we needed buy-in and ownership. So I printed the outputs of the research as large posters and led a hybrid working session among cross-functional work stream leaders. Everyone internalized the employee voices and stories, took ownership of the failures, celebrated the wins. We worked together to reframe problems into opportunities and prioritize the work ahead.</div>
+          <br />
+        </div>
+        <div class="approach-image">
+          <div class="pd-frame">
+            <img src="Assets/perf_mgmt_body.png" alt="Performance Development service blueprint mapping the manager and people-leader experience across a full performance cycle">
+            <div class="pd-caption">&nbsp;&nbsp;Performance Development service blueprint visualized unknown dependencies</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="zone-insights">
+        <div class="sub-label">What we learned</div>
         <ul>
-          <li id="e-ins-1">One size would not fit all. The two largest orgs, Sales and Product, had vastly different needs regarding goal-setting and performance measurement.</li>
-          <li id="e-ins-2">Manager behavior was a key driver of team culture, clarity, and motivation. Managers needed to be heard and enabled fully to set the proper tone and expectations with their team. This applied equally to processes and tools.</li>
-          <li id="e-ins-3">Digital components were great for reference and tracking, but needed to support the human to human interactions. Rich conversations, willingness to give and receive tough feedback, partnership in goal-setting all needed to happen outside the system.</li>
+          <li>One size would not fit all. The two largest orgs, Sales and Product, had vastly different needs regarding goal-setting and performance measurement.</li>
+          <li>Manager behavior was a key driver of team culture, clarity, and motivation. Managers needed to be heard and enabled fully to set the proper tone and expectations with their team. This applied equally to processes and tools.</li>
+          <li>Digital components were great for reference and tracking, but needed to support the human to human interactions. Rich conversations, willingness to give and receive tough feedback, partnership in goal-setting all needed to happen outside the system.</li>
         </ul>
-        <div class="tpl-hint">2–3 bullets. What did you understand that wasn't obvious?</div>
       </div>
 
     <div class="divider"></div>
 
-    <div class="move-artifact">
-      <div class="artifact-wrap">
-        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
-        <div class="contribution-text" id="e-outcomes-text">The discovery process replaced leadership instinct with evidence-based priorities ranked by employee impact and urgency, shifted the conversation from isolated point solutions to a system-level view of interdependencies, and transformed an unclear vision into validated concepts that were ready for IT scoping.</div>
-      </div>
-
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <ul class="contribution-list" id="e-contrib">
-          <li>Partnered directly with the VP of Performance and Development to understand and track against needs.</li>
-          <li>Designed the end-to-end service design process.</li>
-          <li>Planned, conducted, and led manager and individual contributor research, leader workshop, and prototype design sprints.</li>
-          <li>Produced, iterated, and socialized journey maps and service blueprints.</li>
-        </ul>
-      </div>
-  </div>
-
-    <div class="divider"></div>
-
-    <div class="zone-outcome">
-      <div class="outcome-header">What Changed</div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m1-num">100+&nbsp;<span class="metric-unit">collaborators</span></div>
-        <div class="metric-desc" id="e-m1-desc">Leaders, managers, employees, and HR stakeholders engaged across 2 years of research, sprints, and co-design.</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m2-num">72<span class="metric-unit"> ideas and concepts</span></div>
-        <div class="metric-desc" id="e-m2-desc">The cross-functional leader workshop started with employee and manager data and led to 72 ideas the team triaged and prioritized.</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m3-num">30k<span class="metric-unit">&nbsp;employees impacted</span></div>
-        <div class="metric-desc" id="e-m3-desc">Solutions that originated through this journey were launched incrementally to the full ServiceNow global workforce.</div>
+    <div class="zone-evidence">
+      <div class="zone-label"><span class="zone-num">4.</span> OUTCOMES</div>
+      <div class="zone-body-text">The service design approach replaced leadership instinct with evidence-based priorities ranked by employee impact and urgency, shifted the conversation from isolated point solutions to a system-level view of interdependencies, and transformed an unclear vision into validated concepts that were ready for IT scoping.</div>
+      <br />
+      <div class="zone-outcome">
+        <div class="outcome-header">What Changed</div>
+        <div class="metric-block">
+          <div class="metric-number">100+&nbsp;<span class="metric-unit">collaborators</span></div>
+          <div class="metric-desc">Leaders, managers, employees, and HR stakeholders engaged across 2 years of research, sprints, and co-design.</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">72<span class="metric-unit"> ideas and concepts</span></div>
+          <div class="metric-desc">The cross-functional leader workshop started with employee and manager data and led to 72 ideas the team triaged and prioritized.</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">30k<span class="metric-unit">&nbsp;employees impacted</span></div>
+          <div class="metric-desc">Solutions that originated through this journey were launched incrementally to the full ServiceNow global workforce.</div>
+        </div>
       </div>
     </div>
 

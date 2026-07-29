@@ -7,221 +7,64 @@
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #1a1a1a;
-  }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #1a1a1a; }
+  .page { width: 100%; background: white; display: flex; flex-direction: column; }
 
-  .page {
-    width: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-  }
+  .hero { position: relative; width: 100%; aspect-ratio: 16 / 7; overflow: hidden; background: #1a1a1a; }
+  .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%); }
+  .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 44px 26px; }
+  .hero-tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .hero-headline { font-size: clamp(18px, 3vw, 32px); font-weight: 700; color: #fff; line-height: 1.3; max-width: 900px; }
 
-  /* HERO */
-  .hero {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 35%;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
-  }
-  .hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px 44px 26px;
-  }
-  .hero-tag {
-    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.7); margin-bottom: 10px;
-  }
-  .hero-headline {
-    font-size: clamp(18px, 3vw, 32px);
-    font-weight: 700; color: #fff;
-    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
-  }
+  .draft-banner { background: #fef3c7; border-bottom: 2px solid #d97706; padding: 12px 44px; font-size: 11.5px; color: #92400e; line-height: 1.6; }
+  .draft-banner strong { color: #78350f; }
 
-  /* HEADER */
-  .header {
-    padding: 28px 44px 20px;
-    border-bottom: 2px solid #1a1a1a;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .name {
-    font-family: Arial, sans-serif;
-    font-size: 28px; font-weight: 700; color: #0F766E;
-    letter-spacing: -0.5px; line-height: 1;
-  }
-  .title-line {
-    font-size: 11px; font-weight: 500; color: #666;
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;
-  }
-  .contact { text-align: right; font-size: 11px; color: #666; line-height: 1.8; }
-
-  /* CASE LABEL */
-  .case-label {
-    padding: 12px 44px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: #f7f7f7; border-bottom: 1px solid #e8e8e8;
-  }
-  .tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #888; }
-
-  /* BODY */
   .body { flex: 1; padding: 30px 44px 48px; display: flex; flex-direction: column; }
-
-  .zone-label {
-    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: #bbb; margin-bottom: 8px;
-  }
-
-  /* ZONE 1 */
-  .zone-stakes { margin-bottom: 20px; }
-  .stakes-headline {
-    font-size: 21px; font-weight: 700; color: #1a1a1a;
-    line-height: 1.3; font-family: Arial, sans-serif;
-  }
-  .stakes-context { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.55; }
-
+  .zone-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+  .zone-num { color: #0F766E; }
   .divider { height: 1px; background: #e8e8e8; margin: 28px 0; }
 
-  /* TWO COL */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+  .gap-block { border: 2px dashed #d97706; background: #fffbeb; border-radius: 4px; padding: 16px 18px; margin-top: 8px; }
+  .gap-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: #d97706; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .gap-prompt { font-size: 12.5px; color: #92400e; line-height: 1.6; font-style: italic; }
 
-  /* ZONE 2 */
-  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .zone-insights ul li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .source-note { font-size: 10px; color: #999; font-style: italic; margin-top: 8px; }
+
+  .zone-body-text { font-size: 12.5px; color: #333; line-height: 1.6; }
+  .zone-body-text strong { color: #1a1a1a; font-weight: 600; }
+  .sub-label { font-size: 10.5px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 4px; }
+  .sub-label:first-child { margin-top: 0; }
+
+  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 10px; }
+  .zone-insights ul li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .zone-insights ul li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONE 3 */
-  .contribution-text {
-    font-size: 12.5px; color: #333; line-height: 1.6;
-    padding-left: 0;
-  }
-  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .contribution-list li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .contribution-list li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONES 4 + ARTIFACT */
-  .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
-  .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
-  .move-text strong { color: #1a1a1a; font-weight: 600; }
-
-  /* MY APPROACH IMAGE */
-  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; margin-top: 10px; }
   .approach-text { flex: 1; min-width: 0; }
   .approach-image { flex: 1; }
-  .approach-image img { width: 100%; height: auto; display: block; }
   .framed-image { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
   .framed-image img { width: 100%; height: auto; display: block; }
-  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
-  .img-placeholder {
-    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
-    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
-  }
+  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; }
 
-  .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
-  .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
-  .artifact-table { width: 100%; border-collapse: collapse; font-size: 10px; }
-  .artifact-table th {
-    background: #1a1a1a; color: white; padding: 5px 8px;
-    text-align: left; font-weight: 600; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .artifact-table td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; color: #444; vertical-align: top; line-height: 1.4; }
-  .artifact-table tr:last-child td { border-bottom: none; }
-  .artifact-table tr:nth-child(even) td { background: #f9f9f9; }
-  .col-before { color: #999 !important; }
-  .col-after { color: #1a1a1a !important; font-weight: 500; }
-  .artifact-source { font-size: 9px; color: #aaa; font-style: italic; padding: 5px 8px; }
-
-  /* ZONE 5 */
-  .zone-outcome {
-    background: #1a1a1a; border-radius: 3px; padding: 18px 22px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
+  .zone-outcome { background: #1a1a1a; border-radius: 3px; padding: 18px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
   .outcome-header { grid-column: 1/-1; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #0F766E; margin-bottom: 4px; }
   .metric-block { display: flex; flex-direction: column; gap: 3px; }
-  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; font-family: Arial, sans-serif; line-height: 1; }
+  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; line-height: 1; }
   .metric-unit { font-size: 14px; font-weight: 400; color: #aaa; }
   .metric-desc { font-size: 10.5px; color: #777; line-height: 1.4; margin-top: 2px; }
 
-  /* FOOTER */
-  .footer {
-    padding: 12px 44px; border-top: 1px solid #e8e8e8;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-left { font-size: 10px; color: #aaa; font-style: italic; }
-  .footer-right { font-size: 10px; color: #aaa; }
+  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 20px; text-align: center; }
+  .bridge-line a { color: var(--blue); font-weight: 600; font-style: normal; text-decoration: none; border-bottom: 1px solid var(--blue); }
 
-  /* TEMPLATE MODE */
-  .page.tpl .stakes-headline,
-  .page.tpl .stakes-context { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li::before { opacity: 0; }
-  .page.tpl .contribution-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .move-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .artifact-box { opacity: 0.15; }
-  .page.tpl .metric-number { background: #444; color: transparent !important; border-radius: 2px; }
-  .page.tpl .metric-unit { opacity: 0; }
-  .page.tpl .metric-desc { background: #555; color: transparent !important; border-radius: 2px; }
-  .page.tpl .tag { color: transparent; background: #ddd; border-radius: 2px; }
-  .page.tpl
-  .page.tpl .tpl-hint { display: block; }
-  .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
-
-  
-
-    /* ============ MOBILE ============ */
-@media (max-width: 800px) {
-  .lanes-grid {
-    grid-template-columns: none;
+  @media (max-width: 800px) {
+    .zone-outcome { grid-template-columns: 1fr; }
+    .approach-block { flex-direction: column; }
   }
-  .zone-outcome {
-    grid-template-columns: 1fr;
-  }
-  .move-artifact {
-    padding: 10px;
-  }
-  .approach-block {
-    flex-direction: column;
-  }
-  .approach-image {
-    order: -1;
-  }
-  .hero-content {
-    padding: 18px 20px 20px;
-  }
-  .hero-tag {
-    margin-bottom: 8px;
-  }
-}
-
 </style>
 </head>
 <body class="">
@@ -232,109 +75,91 @@
     <a class="nav-link" href="index.html">About me</a>
     <span class="nav-sep">|</span>
     <span class="nav-case-label">Case studies:</span>
-    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html">Service design</a>
     <span class="nav-active">Building capability</span>
-    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_persona_program.html">Program design</a>
     <span class="nav-sep">|</span>
     <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
-  <div class="nav-links-narrow">
-    <a class="nav-link" href="index.html">About</a>
-    <span class="nav-sep">|</span>
-    <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Case studies &#9662;</button>
-      <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
-        <span class="nav-active">Building capability</span>
-        <a href="kevin_perlas_case_study_persona_program.html" aria-label="Navigate to Global People Persona Program case study">Program design</a>
-      </div>
-    </div>
-    <span class="nav-sep">|</span>
-    <a class="nav-link" href="kevin_perlas_lets_connect.html">Connect</a>
-  </div>
 </nav>
+
 <div class="page" id="page">
 
   <div class="hero" id="top">
     <img class="hero-image" src="Assets/insights_capability_hero.png" alt="Team reviewing printed research artifacts spread across a conference table">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag" id="e-case-tag">Case Study: Building Insights Capability &nbsp;·&nbsp; Nike &amp; ServiceNow &nbsp;·&nbsp; 2019-2025</div>
-      <div class="hero-headline" id="e-stakes-head">Human Resources had no structured way to gather qualitative feedback from employees. I closed that gap twice.</div>
+      <div class="hero-tag">Case Study: Building Insights Capability &nbsp;&middot;&nbsp; Nike &amp; ServiceNow &nbsp;&middot;&nbsp; 2019-2025</div>
+      <div class="hero-headline">Human Resources had valuable surveys, but no structured way to dig deeper for qualitative employees perspectives. So I closed that gap, twice.</div>
     </div>
   </div>
 
   <div class="body">
 
-    <div class="zone-stakes">
-      <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">Large enterprises like Nike and ServiceNow usually have mature employee voice programs that survey employees annually. They excel at identifying what's working well, what isn't, and what shifts year over year, but they leave a gap in understanding true sentiment and root causes of issues. At Nike, I set the strategy and led the team that built Employee Experience Insiders, a qualitative panel that generated insights informing decisions for 75,000+ employees. Years later at ServiceNow, when the need resurfaced, I built the same model myself end to end, and again delivered HR leaders and product teams the actionable, data-driven insights they needed to move their work forward with precision.</div>
+    <div class="zone-shift">
+      <div class="zone-label"><span class="zone-num">1.</span> CONTEXT</div>
+      <div class="zone-body-text">According to the Society for Human Resource Management (SHRM), replacing an employee can cost between 50% and 200% of their annual salary, depending on their level. In addition to headcount cost, turnover can leave knowledge gaps, disrupt innovation, stall teams, and fracture culture. So it is imperative to hold on to good talent. One tool large enterprises like Nike and ServiceNow use to understand employee sentiment and flight risk is an annual employee voice survey (EVS). When done well, these surveys excel at identifying what's working, what isn't, and what shifts year over year. Corporations leverage this data, among more, to keep a pulse on turnover and human capital costs.</div>
+    </div>
 
-      <div class="divider"></div>
+    <div class="divider"></div>
+
+    <div class="zone-winners">
+      <div class="zone-label"><span class="zone-num">2.</span> SITUATION</div>
+      <div class="zone-body-text">However, knowing that something is wrong isn't the same as knowing why or how to fix it. To earn and keep employee trust, these companies need to address the issues employees are flagging in the EVS, but the surveys leave a gap in understanding root causes of issues and nuanced sentiment behind a score. At Nike, I set the strategy and led the team that built Employee Experience Insiders, an employee panel that sourced qualitative insights informing decisions for 75,000+ employees. Years later at ServiceNow, when the need resurfaced, I built the same model myself end to end, and again delivered HR leaders and product teams the actionable, data-driven insights they needed to move their work forward with precision.</div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="zone-approach">
+      <div class="zone-label"><span class="zone-num">3.</span> APPROACH</div>
+      <div class="zone-body-text">In both cases, the need surfaced organically. HR leaders were asking the same questions and running into the same barriers. "Why did the score drop?", "What is this number telling us?", "This isn't changing. What can we do about it?" The questions always pointed to the need to dig deeper with qualitative questions and rich conversations.</div>
+      <br />
+      <div class="zone-body-text">At Nike, the Human Resources Business Partners (HRBPs) care deeply about the organizations they serve, as they should. They take ownership in nurturing the leaders and people in those orgs by being the point of contact between them and HR. So it's understandable that the HRBPs might be sensitive to researchers asking questions and potentially implying outcomes that the HRBPs couldn't support. This dynamic however posed challenges, particularly when my team needed to solicit authentic employee voices so we could better understand root causes of EVS scores. HRBPs wanted to personally select employees to participate in our research, which could lead to biased findings.</div>
+      <br />
+      <div class="zone-body-text">To protect the integrity of our work, I met with HR leadership and the HRBPs to come to an agreement: my team did not need to seek sign-off to conduct research among employees who 1) were not on a performance plan, and 2) opted in to participate in research. The opt-in opened the door for us to leverage a common tactic in consumer research: the research panel. That gave birth to the Employee Experience Insiders. Having identified the strategic need and the tactical opening to reach employees, my team had clarity to execute and they rose the occassion. In short order, we had our operating model, complete with internal outreach site, registration workflow, communications templates, and research SOPs. A year after launch, the team had recruited over 700 Insiders and supported over 30 studies per year; a volume and velocity that would not have been possible otherwise.</div>
 
       <div class="approach-block">
         <div class="approach-text">
-          <div class="zone-label">MY APPROACH</div>
-          <div class="move-text" id="e-move"><strong>Focus on the human voices.</strong>&nbsp;Data science teams took care of the quantitative. I complemented that with equal vigor, at Nike by setting the strategy and directing the team that built it, and again at ServiceNow by building it myself. Both programs resulted in a repeatable qualitative insight infrastructure that reduced dependency on HRBP-gated access, accelerated research cycles, and created reusable employee intelligence for product and program decisions.</div>
+          <div class="zone-body-text">Years later, as Director of Employee experiences at ServiceNow, the pattern repeated. I was hearing the same questions in the same context. Rather than reinvent the wheel, I leveraged what worked at Nike and recreated it at ServiceNow as a team of one, using our no-code/low-code tools. Within a couple months, panel participants were providing insights into key employee moments such as onboarding, performance assessment, goal-creation, learning and development, and offboarding.</div>
+        <br />
+          <div class="zone-body-text">Here are some factors that made building this qualitative capability successful:</div>
+          <ul class="contribution-list">
+            <li>Employees want to be heard. With Experience Insiders, employees felt like they belonged to something that improved how they and their co-workers experience the workplace. We closed the loop with them after every activity so they knew their input was making a difference.</li>
+            <li>A known panel improved our ability to make connections that purely anonymous data couldn't. It also enabled us to understand how changes over time affected the same people. When necessary, we could cross-check with data from random stratified samples.</li>
+            <li>At Nike and ServiceNow, a major speed bottleneck was employee access. Employee contact at times had to route through HRBPs as gatekeepers. Panelists who'd opted in directly could be reached without that approval step, and that single change was a major win.</li>
+          </ul>
         </div>
         <div class="approach-image">
           <div class="framed-image">
             <img src="Assets/insights_capability_body.png" alt="EX Insiders microsite">
-            <div class="frame-caption">Experience Insiders microsite conveys employee value</div>
+            <div class="frame-caption">&nbsp;&nbsp;Experience Insiders microsite conveys employee value</div>
           </div>
         </div>
       </div>
-    </div>
 
     <div class="divider"></div>
 
-    <div class="zone-insights">
-        <div class="zone-label">INSIGHTS AND FACTORS</div>
-        <ul>
-          <li id="e-ins-1">Employees want to be heard. With Experience Insiders, employees felt like they belonged to something that improved how they and their co-workers experience the workplace. We closed the loop with them after every activity so they knew their input was making a difference.</li>
-          <li id="e-ins-2">A known panel improved our ability to make connections that purely anonymous data couldn't. It also enabled us to understand how changes over time affected the same people. When necessary, we could cross-check with data from random stratified samples.</li>
-          <li id="e-ins-3">At Nike and ServiceNow, a major speed bottleneck was employee access. Employee contact at times had to route through HRBPs as gatekeepers. Panelists who'd opted in directly could be reached without that approval step, and that single change was a major win.</li>
-        </ul>
-      </div>
+    <div class="zone-evidence">
+      <div class="zone-label"><span class="zone-num">4.</span> OUTCOMES</div>
+      <div class="zone-body-text">Replaced a one-time annual snapshot with a standing, known panel that could be re-engaged over time. Closing the loop by reporting findings back to participants built trust and kept response rates high. In both cases, HR had a new way to sense and serve employees.</div>
 
-    <div class="divider"></div>
-
-    <div class="move-artifact">
-
-      <div class="artifact-wrap">
-        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
-        <div class="contribution-text" id="e-outcomes-text">Replaced a one-time annual snapshot with a standing, known panel that could be re-engaged over time. Closing the loop, reporting findings back to participants, built trust and kept response rates high. At ServiceNow, removing the HRBP approval gate entirely gave research direct, opt-in access to employees.</div>
-      </div>
-
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <ul class="contribution-list" id="e-contrib">
-          <li>At Nike, set the strategy and led the team that built and operated Experience Insiders end to end: recruitment, confidentiality, governance, and study design. The team did the hands-on build; I directed the approach and made the calls on scope, governance, and priorities.</li>
-          <li>At ServiceNow, built the entire system myself as a team of one, including low-code/no-code toolsets for the digital touch points.</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="zone-outcome">
-      <div class="outcome-header">What Changed</div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m1-num">700<span class="metric-unit">+</span></div>
-        <div class="metric-desc" id="e-m1-desc">Volunteers recruited and screened across 25 countries for Nike's Experience Insiders panel</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m2-num">30<span class="metric-unit">+ / yr</span></div>
-        <div class="metric-desc" id="e-m2-desc">Studies run on the standing panel annually, without rebuilding recruitment each time</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m3-num">75<span class="metric-unit">%</span></div>
-        <div class="metric-desc" id="e-m3-desc">Cut in time-to-insight at ServiceNow's EX Insiders, driven mainly by removing the HRBP access gate</div>
+      <div class="zone-outcome">
+        <div class="outcome-header">What Changed</div>
+        <div class="metric-block">
+          <div class="metric-number">700<span class="metric-unit">+</span></div>
+          <div class="metric-desc">Volunteers recruited and screened across 25 countries for Nike's Experience Insiders panel</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">30<span class="metric-unit">+ / yr</span></div>
+          <div class="metric-desc">Studies run on the standing panel annually, without rebuilding recruitment each time</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">75<span class="metric-unit">%</span></div>
+          <div class="metric-desc">Cut in time-to-insight at ServiceNow's EX Insiders, driven mainly by removing the HRBP access gate</div>
+        </div>
       </div>
     </div>
 

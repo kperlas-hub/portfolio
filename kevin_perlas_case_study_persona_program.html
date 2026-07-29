@@ -5,223 +5,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="styles.css">
 <style>
-  
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: Arial, sans-serif;
-    background: #f0f0f0;
-    color: #1a1a1a;
-  }
+  body { font-family: Arial, sans-serif; background: #f0f0f0; color: #1a1a1a; }
+  .page { width: 100%; background: white; display: flex; flex-direction: column; }
 
-  .page {
-    width: 100%;
-    background: white;
-    display: flex;
-    flex-direction: column;
-  }
+  .hero { position: relative; width: 100%; aspect-ratio: 16 / 7; overflow: hidden; background: #1a1a1a; }
+  .hero-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; display: block; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%); }
+  .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px 44px 26px; }
+  .hero-tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+  .hero-headline { font-size: clamp(18px, 3vw, 32px); font-weight: 700; color: #fff; line-height: 1.3; max-width: 900px; }
 
-  /* HERO */
-  .hero {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 7;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-  .hero-image {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
-    display: block;
-  }
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(10,10,10,0.25) 0%, rgba(10,10,10,0.55) 55%, rgba(10,10,10,0.88) 100%);
-  }
-  .hero-content {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 28px 44px 26px;
-  }
-  .hero-tag {
-    font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: rgba(255,255,255,0.7); margin-bottom: 10px;
-  }
-  .hero-headline {
-    font-size: clamp(18px, 3vw, 32px);
-    font-weight: 700; color: #fff;
-    line-height: 1.3; font-family: Arial, sans-serif; max-width: 900px;
-  }
+  .draft-banner { background: #fef3c7; border-bottom: 2px solid #d97706; padding: 12px 44px; font-size: 11.5px; color: #92400e; line-height: 1.6; }
+  .draft-banner strong { color: #78350f; }
 
-  /* HEADER */
-  .header {
-    padding: 28px 44px 20px;
-    border-bottom: 2px solid #1a1a1a;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-  .name {
-    font-family: Arial, sans-serif;
-    font-size: 28px; font-weight: 700; color: #0F766E;
-    letter-spacing: -0.5px; line-height: 1;
-  }
-  .title-line {
-    font-size: 11px; font-weight: 500; color: #666;
-    letter-spacing: 2px; text-transform: uppercase; margin-top: 5px;
-  }
-  .contact { text-align: right; font-size: 11px; color: #666; line-height: 1.8; }
-
-  /* CASE LABEL */
-  .case-label {
-    padding: 12px 44px;
-    display: flex; align-items: center; justify-content: space-between;
-    background: #f7f7f7; border-bottom: 1px solid #e8e8e8;
-  }
-  .tag { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #888; }
-
-  /* BODY */
   .body { flex: 1; padding: 30px 44px 48px; display: flex; flex-direction: column; }
-
-  .zone-label {
-    font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
-    text-transform: uppercase; color: #bbb; margin-bottom: 8px;
-  }
-
-  /* ZONE 1 */
-  .zone-stakes { margin-bottom: 20px; }
-  .stakes-headline {
-    font-size: 21px; font-weight: 700; color: #1a1a1a;
-    line-height: 1.3; font-family: Arial, sans-serif;
-  }
-  .stakes-context { font-size: 12.5px; color: #555; margin-top: 6px; line-height: 1.55; }
-
+  .zone-label { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #888; margin-bottom: 8px; }
+  .zone-num { color: #0F766E; }
   .divider { height: 1px; background: #e8e8e8; margin: 28px 0; }
 
-  /* TWO COL */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
+  .gap-block { border: 2px dashed #d97706; background: #fffbeb; border-radius: 4px; padding: 16px 18px; margin-top: 8px; }
+  .gap-tag { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; background: #d97706; padding: 3px 8px; border-radius: 3px; margin-bottom: 10px; }
+  .gap-prompt { font-size: 12.5px; color: #92400e; line-height: 1.6; font-style: italic; }
 
-  /* ZONE 2 */
-  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .zone-insights ul li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .source-note { font-size: 10px; color: #999; font-style: italic; margin-top: 8px; }
+
+  .zone-body-text { font-size: 12.5px; color: #333; line-height: 1.6; }
+  .zone-body-text strong { color: #1a1a1a; font-weight: 600; }
+  .sub-label { font-size: 10.5px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 14px 0 4px; }
+  .sub-label:first-child { margin-top: 0; }
+
+  .zone-insights ul { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 10px; }
+  .zone-insights ul li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .zone-insights ul li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONE 3 */
-  .contribution-text {
-    font-size: 12.5px; color: #333; line-height: 1.6;
-    padding-left: 0;
-  }
-  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-  .contribution-list li {
-    font-size: 12.5px; color: #333; line-height: 1.5;
-    padding-left: 14px; position: relative;
-  }
+  .contribution-list { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+  .contribution-list li { font-size: 12.5px; color: #333; line-height: 1.5; padding-left: 14px; position: relative; }
   .contribution-list li::before { content: '•'; position: absolute; left: 0; color: #bbb; font-size: 11px; top: 1px; }
 
-  /* ZONES 4 + ARTIFACT */
-  .move-artifact { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-bottom: 18px; }
-  .move-text { font-size: 12.5px; color: #333; line-height: 1.6; }
-  .move-text strong { color: #1a1a1a; font-weight: 600; }
-
-  /* MY APPROACH IMAGE */
-  .approach-block { display: flex; gap: 28px; align-items: flex-start; }
+  .approach-block { display: flex; gap: 28px; align-items: flex-start; margin-top: 10px; }
   .approach-text { flex: 1; min-width: 0; }
   .approach-image { flex: 1; }
-  .approach-image img { width: 100%; height: auto; display: block; }
   .framed-image { background: #0F766E; padding: 1pt 1pt 12px 1pt; border-radius: 3px; }
   .framed-image img { width: 100%; height: auto; display: block; }
-  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; font-family: Arial, sans-serif; }
-  .img-placeholder {
-    width: 100%; min-height: 220px; background: #f4f4f4; border: 1px dashed #ccc; border-radius: 3px;
-    display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 11px; font-style: italic;
-  }
+  .frame-caption { color: #fff; font-size: 12.5px; font-weight: 500; line-height: 1.5; margin-top: 12px; }
 
-  .artifact-wrap { display: flex; flex-direction: column; gap: 4px; }
-  .artifact-box { background: #f4f4f4; border: 1px solid #ddd; border-radius: 3px; overflow: hidden; }
-  .artifact-table { width: 100%; border-collapse: collapse; font-size: 10px; }
-  .artifact-table th {
-    background: #1a1a1a; color: white; padding: 5px 8px;
-    text-align: left; font-weight: 600; font-size: 9px; letter-spacing: 1px; text-transform: uppercase;
-  }
-  .artifact-table td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; color: #444; vertical-align: top; line-height: 1.4; }
-  .artifact-table tr:last-child td { border-bottom: none; }
-  .artifact-table tr:nth-child(even) td { background: #f9f9f9; }
-  .col-before { color: #999 !important; }
-  .col-after { color: #1a1a1a !important; font-weight: 500; }
-  .artifact-source { font-size: 9px; color: #aaa; font-style: italic; padding: 5px 8px; }
-
-  /* ZONE 5 */
-  .zone-outcome {
-    background: #1a1a1a; border-radius: 3px; padding: 18px 22px;
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
-  }
+  .zone-outcome { background: #1a1a1a; border-radius: 3px; padding: 18px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 14px; }
   .outcome-header { grid-column: 1/-1; font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #0F766E; margin-bottom: 4px; }
   .metric-block { display: flex; flex-direction: column; gap: 3px; }
-  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; font-family: Arial, sans-serif; line-height: 1; }
+  .metric-number { font-size: 30px; font-weight: 700; color: #0F766E; line-height: 1; }
   .metric-unit { font-size: 14px; font-weight: 400; color: #aaa; }
   .metric-desc { font-size: 10.5px; color: #777; line-height: 1.4; margin-top: 2px; }
 
-  /* FOOTER */
-  .footer {
-    padding: 12px 44px; border-top: 1px solid #e8e8e8;
-    display: flex; justify-content: space-between; align-items: center;
-  }
-  .footer-left { font-size: 10px; color: #aaa; font-style: italic; }
-  .footer-right { font-size: 10px; color: #aaa; }
+  .bridge-line { font-size: 11px; color: #888; font-style: italic; margin-top: 20px; text-align: center; }
+  .bridge-line a { color: var(--blue); font-weight: 600; font-style: normal; text-decoration: none; border-bottom: 1px solid var(--blue); }
 
-  /* TEMPLATE MODE */
-  .page.tpl .stakes-headline,
-  .page.tpl .stakes-context { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .zone-insights ul li::before { opacity: 0; }
-  .page.tpl .contribution-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .move-text { background: #ebebeb; color: transparent !important; border-radius: 2px; }
-  .page.tpl .artifact-box { opacity: 0.15; }
-  .page.tpl .metric-number { background: #444; color: transparent !important; border-radius: 2px; }
-  .page.tpl .metric-unit { opacity: 0; }
-  .page.tpl .metric-desc { background: #555; color: transparent !important; border-radius: 2px; }
-  .page.tpl .tag { color: transparent; background: #ddd; border-radius: 2px; }
-  .page.tpl
-  .page.tpl .tpl-hint { display: block; }
-  .tpl-hint { display: none; font-size: 10px; color: #aaa; font-style: italic; margin-top: 6px; }
-
-  
-
-    /* ============ MOBILE ============ */
-@media (max-width: 800px) {
-  .lanes-grid {
-    grid-template-columns: none;
+  @media (max-width: 800px) {
+    .zone-outcome { grid-template-columns: 1fr; }
+    .approach-block { flex-direction: column; }
   }
-  .zone-outcome {
-    grid-template-columns: 1fr;
-  }
-  .move-artifact {
-    padding: 10px;
-  }
-  .approach-block {
-    flex-direction: column;
-  }
-  .approach-image {
-    order: -1;
-  }
-  .hero-content {
-    padding: 18px 20px 20px;
-  }
-  .hero-tag {
-    margin-bottom: 8px;
-  }
-}
-
 </style>
 </head>
 <body class="">
@@ -232,54 +75,50 @@
     <a class="nav-link" href="index.html">About me</a>
     <span class="nav-sep">|</span>
     <span class="nav-case-label">Case studies:</span>
-    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
-    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
+    <a class="nav-link" href="kevin_perlas_case_study_design_sprints.html">Design sprints</a>
+    <a class="nav-link" href="kevin_perlas_case_study_ai_skills.html">AI skills</a>
+    <a class="nav-link" href="kevin_perlas_case_study_perf_mgmt.html">Service design</a>
+    <a class="nav-link" href="kevin_perlas_case_study_insights_capability.html">Building capability</a>
     <span class="nav-active">Program design</span>
     <span class="nav-sep">|</span>
     <a class="nav-link" href="kevin_perlas_lets_connect.html">Let's connect</a>
   </div>
-  <div class="nav-links-narrow">
-    <a class="nav-link" href="index.html">About</a>
-    <span class="nav-sep">|</span>
-    <div class="nav-dropdown">
-      <button class="nav-dropdown-btn">Case studies &#9662;</button>
-      <div class="nav-dropdown-menu">
-        <a href="kevin_perlas_case_study_design_sprints.html" aria-label="Navigate to Design Sprints case study">Design sprints</a>
-        <a href="kevin_perlas_case_study_ai_skills.html" aria-label="Navigate to AI Skills for Design Discovery case study">AI skills</a>
-        <a href="kevin_perlas_case_study_perf_mgmt.html" aria-label="Navigate to Service Design for Performance Management case study">Service design</a>
-        <a href="kevin_perlas_case_study_insights_capability.html" aria-label="Navigate to Building Insights Capability case study">Building capability</a>
-        <span class="nav-active">Program design</span>
-      </div>
-    </div>
-    <span class="nav-sep">|</span>
-    <a class="nav-link" href="kevin_perlas_lets_connect.html">Connect</a>
-  </div>
 </nav>
+
 <div class="page" id="page">
 
   <div class="hero" id="top">
     <img class="hero-image" src="Assets/persona_hero.png" alt="Researcher reviewing a persona sticky-note wall organized by name">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag" id="e-case-tag">Case Study: Global People Persona Program &nbsp;·&nbsp; ServiceNow Global People &nbsp;·&nbsp; 2025</div>
-      <div class="hero-headline" id="e-stakes-head">The Product Organization was making decisions based on assumptions of their users. Leadership asked for personas; I delivered a governed research program product teams could use to make prioritization and readiness decisions.</div>
+      <div class="hero-tag">Case Study: Global People Persona Program &nbsp;&middot;&nbsp; ServiceNow Global People &nbsp;&middot;&nbsp; 2025</div>
+      <div class="hero-headline">The Product Organization was making decisions based on assumptions of their users. Leadership asked for personas; I delivered a governed research program product teams could use to make prioritization and readiness decisions.</div>
     </div>
   </div>
 
   <div class="body">
 
-    <div class="zone-stakes">
-      <div class="zone-label">THE SITUATION</div>
-      <div class="stakes-context" id="e-stakes-ctx">ServiceNow's Global People organization (human resources) was investing heavily in product-led employee experience, but it was building for employees it didn't deeply understand. Existing sentiment data wasn't focused on the specific personas that products were targeting, leaving teams to base prioritization and design decisions on assumptions. Leadership asked for personas without a clear definition of what they were or how they'd be used to inform product decisions.</div>
+    <div class="zone-shift">
+      <div class="zone-label"><span class="zone-num">1.</span> CONTEXT</div>
+      <div class="zone-body-text">ServiceNow's Global People organization (human resources) and its partners in Digital Technology (DT) were investing heavily in product-led employee experiences, but they were building for employees they didn't deeply understand. Existing sentiment data wasn't focused on the specific employees that products were targeting, leaving teams to base prioritization and design decisions on assumptions. So products didn't always achieve the outcomes desired, either because they weren't adopted as intended or they didn't match their users' needs or mental models.</div>
+    </div>
+  
+    <div class="divider"></div>
 
-      <div class="divider"></div>
+    <div class="zone-winners">
+      <div class="zone-label"><span class="zone-num">2.</span> SITUATION</div>
+      <div class="zone-body-text">Leadership recognized the gap and they had a vague idea of what a persona was. So with good intentions, they asked for personas. However, there was no standard persona definition, nor understanding of how personas would be used in the product organization to improve end user outcomes.</div>
+    </div>
 
+    <div class="divider"></div>
+
+    <div class="zone-approach">
+      <div class="zone-label"><span class="zone-num">3.</span> APPROACH</div>
       <div class="approach-block">
         <div class="approach-text">
-          <div class="zone-label">MY APPROACH</div>
-          <div class="move-text" id="e-move"><strong>Build with data and wire it into the work.</strong> I collaborated with the SVP of People Operations and Product to define our focus areas, then worked with data science to map how ServiceNow, Workday, and Snowflake each defined the employee segments those products served. From this, we identified 5 priority personas and I built a repeatable annual plan for gathering, synthesizing, and delivering persona data to product teams in an actionable format. Each bi-annual cycle, I ran quantitative and qualitative research on the topics product teams needed most, then synthesized and delivered it so it addressed their explicit product needs. I then worked with the PMO to embed persona requirements directly into Global People's governance templates (Stakeholder Impact Assessment, Product Initiation Summary, Operational Readiness Checklist), built a self-service discovery guide so COEs without a researcher could still do the work, and ran a roadshow to transfer the capability org-wide.</div>
+          <div class="zone-body-text"><strong>Clarify the request.</strong> When someone up our management chain entrusts us with a directive, we're often compelled to rush to accommodate. In this case, I knew that a seemingly simple request could lead to many wasted days among a significant number of people if we were working towards the wrong objective. So I met with the leader and the product team to fully understand their intentions. First, we disambiguated personas and came to an agreement about what to expect as a deliverable. I then created the workback plan to set expectations about the time, people, collaboration, and investment that would be required.</div>
+          <br />
+          <div class="zone-body-text"><strong>Build with data and wire it into the work.</strong> I collaborated with the SVP of People Operations and Product to define our focus areas, then worked with data science to map how ServiceNow, Workday, and Snowflake each defined the employee segments we served with the products we were prioritizing. From this, we identified 5 personas to focus on and I built a repeatable annual plan for gathering, synthesizing, and delivering persona data to product teams in an actionable format. Each biannual cycle, I ran quantitative and qualitative research on the topics product teams needed most, then synthesized and delivered it so it addressed their explicit product needs. I then worked with the PMO to embed persona requirements directly into Global People's governance templates (Stakeholder Impact Assessment, Product Initiation Summary, Operational Readiness Checklist), built a self-service discovery guide so COEs without a researcher could still do the work, and ran a roadshow to transfer the capability org-wide.</div>
         </div>
         <div class="approach-image">
           <div class="framed-image">
@@ -288,56 +127,27 @@
           </div>
         </div>
       </div>
-    </div>
 
     <div class="divider"></div>
 
-    <div class="zone-insights">
-        <div class="zone-label">INSIGHTS AND FACTORS</div>
-        <ul>
-          <li id="e-ins-1">Product teams were naming "employees" as their audience without knowing who those employees actually were, what motivated them, or what stood in their way, making resource allocation and design decisions guesswork.</li>
-          <li id="e-ins-2">The org had sentiment data (surveys, exit data, engagement scores) but none of it was organized around the specific personas driving product roadmaps or presented in a manner that was actionable.</li>
-          <li id="e-ins-3">A persona program would only work if it became a required part of the governance process. Adoption had to be designed in from the start.</li>
-        </ul>
-        <div class="tpl-hint">2-3 bullets. What did you understand that wasn't obvious?</div>
-      </div>
-
-    <div class="divider"></div>
-
-    <div class="move-artifact">
-
-      <div class="artifact-wrap">
-        <div class="zone-label" id="e-outcomes-label">OUTCOMES</div>
-        <div class="contribution-text" id="e-outcomes-text">The program moved Global People from a one-off persona deliverable to a living research capability. A repeatable 4-step sprint model replaced ad hoc profiling, and embedding persona requirements directly into governance templates made adoption structural rather than optional. Product teams now have a biannually refreshed source of truth on the people they serve.</div>
-      </div>
-
-      <div>
-        <div class="zone-label">My Specific Contribution</div>
-        <ul class="contribution-list" id="e-contrib">
-          <li>Owned the program as business owner and architect, designing all aspects from scratch.</li>
-          <li>Built the governance integration model embedding personas into product gateways.</li>
-          <li>Led the workstreams covering research practices, socialization, documentation, and cohort recruitment.</li>
-          <li>Authored the self-service enablement materials and ran the Business Product Manager roadshow.</li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="zone-outcome">
-      <div class="outcome-header">What Changed</div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m1-num">5</div>
-        <div class="metric-desc" id="e-m1-desc">Personas scoped and in active research — HRBPs, Managers, Sellers, New Hires, Early-in-Career — each with dedicated cohorts</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m2-num">3<span class="metric-unit"> change management motions</span></div>
-        <div class="metric-desc" id="e-m2-desc">Distinct enablement materials authored: executive overview, BPM governance integration, and COE self-service guide</div>
-      </div>
-      <div class="metric-block">
-        <div class="metric-number" id="e-m3-num">Daily<span class="metric-unit"> value</span></div>
-        <div class="metric-desc" id="e-m3-desc">A key stakeholder who was the Sr Director in charge of AI products said "Your HRBP persona is always open in my browser and I refer to it daily."</div>
+    <div class="zone-evidence">
+      <div class="zone-label"><span class="zone-num">4.</span> OUTCOMES</div>
+      <div class="zone-body-text">The program moved Global People from a one-off persona deliverable to a living research capability. A repeatable 4-step sprint model replaced ad hoc profiling, and embedding persona requirements directly into governance templates made adoption structural rather than optional. Product teams now have a biannually refreshed source of truth on the people they serve.</div>
+      <br />
+      <div class="zone-outcome">
+        <div class="outcome-header">What Changed</div>
+        <div class="metric-block">
+          <div class="metric-number">5</div>
+          <div class="metric-desc">Personas scoped and delivered, each with active cohorts: HRBPs, Managers, Sellers, New Hires, Early-in-Career.</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">3<span class="metric-unit"> change management motions</span></div>
+          <div class="metric-desc">Distinct enablement materials authored: executive overview, BPM governance integration, and COE self-service guide</div>
+        </div>
+        <div class="metric-block">
+          <div class="metric-number">Daily<span class="metric-unit"> value</span></div>
+          <div class="metric-desc">A key stakeholder in charge of AI products said "Your HRBP persona is always open in my browser and I refer to it daily."</div>
+        </div>
       </div>
     </div>
 
