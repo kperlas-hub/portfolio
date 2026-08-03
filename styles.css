@@ -2,7 +2,8 @@
    Kevin Perlas Portfolio — Shared Styles
    Nav, footer, and the site color system live here so every
    page (index + 5 case studies + Let's Connect) stays in sync.
-   Page-specific layout stays in each page's own <style> block.
+   Case study layout lives in case-study.css. Page-specific
+   layout stays in each page's own <style> block.
    ============================================================ */
 
 :root {
@@ -152,3 +153,17 @@ html {
   text-decoration: none;
 }
 .footer-top-link:hover { text-decoration: underline; }
+
+/* ============ KEYBOARD FOCUS ============ */
+.nav-logo:focus-visible,
+.nav-link:focus-visible,
+.nav-dropdown-btn:focus-visible,
+.nav-dropdown-menu a:focus-visible,
+.footer-top-link:focus-visible,
+.case-card:focus-visible,
+.bridge-line a:focus-visible,
+.contact-value a:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
